@@ -1,4 +1,5 @@
 import { VStack, Image, Center, Text, Heading } from "@gluestack-ui/themed";
+import { useNavigation } from "@react-navigation/native";
 import BackagroundImg from "@assets/background.png";
 
 import Logo from "@assets/logo.svg";
@@ -7,6 +8,12 @@ import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 
 export function SignUp() {
+  const navigation = useNavigation() 
+
+  function handleGoBack(){
+    navigation.goBack()
+  }
+
   return (
     <VStack flex={1} bg="$gray700">
       <Image
@@ -20,10 +27,9 @@ export function SignUp() {
 
       <VStack flex={1} px="$10" pb="$16">
         <Center my="$24">
-          <Logo/>
-
-          <Text color="$#f2f2f9" fontSize="$3xl" mt="$1">
-            Espaço estetica
+        <Logo width={70} height={70} />
+          <Text fontSize="$2xl" fontWeight="bold">
+            LORENA
           </Text>
         </Center>
 
@@ -59,7 +65,11 @@ export function SignUp() {
             Ainda não tem acesso?
           </Text>
 
-          <Button title="Voltar para login" variant="outline" mt="$2" />
+          <Button 
+            title="Voltar para login" 
+            variant="outline" mt="$2" 
+            onPress={handleGoBack}
+            />
         </Center>
 
       </VStack>
