@@ -15,7 +15,7 @@ export function Button ({title, isLoading = false, ...rest}: Props) {
     bg="$violet400"
     borderWidth={"$0"}
     borderColor="$violet700"
-    rounded="$sm"
+    rounded="$full"
     $active-bg="$violet500"
     {...rest}
     >

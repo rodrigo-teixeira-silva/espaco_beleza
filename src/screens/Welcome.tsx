@@ -12,7 +12,7 @@ import {
 
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
-import BackagroundImg from "@assets/background.png";
+import BackagroundImg from "@assets/mainBackground.png";
 
 import Logo from "@assets/logo.svg";
 import { useState } from "react";
@@ -21,7 +21,7 @@ import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 import { useNavigation } from "@react-navigation/native";
 
-export function Signin() {
+export function Welcome() {
   const [borderColor, setBorderColor] = useState("#7C7C8A");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [isClicked, setIsClicked] = useState(false); // Estado para gerenciar a cor do texto
@@ -31,9 +31,10 @@ export function Signin() {
     navigation.navigate("SignUp");
   }
 
-  function handleRecoverPassword() {
-    navigation.navigate("RecoverPassword");
+  function handleRecoverSignin() {
+    navigation.navigate("Signin");
   }
+
 
   return (
     <VStack flex={1} bg="$gray700">
@@ -62,39 +63,21 @@ export function Signin() {
             </Center>
 
             <Center gap="$2">
-              <Heading color="$gray100">Acesse a conta</Heading>
+              <Heading color="#7C7C8A">Bem vindo</Heading>
 
-              <Input
-                placeholder="E-mail"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                style={{ color: "#000000" }}
-              />
-              <Input
-                placeholder="Senha"
-                secureTextEntry
-                style={{ color: "#000000" }}
+            
+              <Button title="Criar conta" 
+              onPress={handleNewAccount}
               />
 
-              <Button title="Acessar" />
+               <Button title="Login" 
+              onPress={handleRecoverSignin}
+              />
             </Center>
 
             <Center flex={1} justifyContent="flex-end" mt="$4" >
+             
 
-              <Text color="#FFF" fontSize="$sm" mt="$33" mb="$7" fontFamily="$body">
-                Ainda não tem uma conta?{" "}
-                <Pressable onPress={() => setIsClicked(!isClicked)}>
-                  <Text
-                    color={isClicked ? "$violet500" : "#FFF"} // Mudando a cor para violet quando clicado
-                    fontSize="$sm"
-                    fontWeight="bold"
-                    onPress={handleNewAccount}
-                    textAlign="center"
-                  >
-                    clique aqui
-                  </Text>
-                </Pressable>
-              </Text>
             </Center>
           </VStack>
         )}

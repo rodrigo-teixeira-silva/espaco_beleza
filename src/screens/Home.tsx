@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { FlatList } from "react-native";
 import { Heading, HStack, Text, VStack } from "@gluestack-ui/themed";
+import { productCard } from "@components/ProductCards";
 
 import { HomeHeader } from "@components/HomeHeader";
 import { Group } from "@components/Groups";
 
+
 export function Home() {
   const [group, SetGroup] = useState([
-    "Treinamntos",
+    "Treinamentos",
     "Produtos",
     "Consultas",
     "Vendas",
@@ -32,7 +34,7 @@ export function Home() {
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingHorizontal: 32 }}
-        style={{ margin: 40, maxHeight: 44, minHeight: 44 }}
+        style={{  margin: 40, maxHeight: 44, minHeight: 44 }}
       />
 
       <VStack px="$8">
@@ -45,6 +47,8 @@ export function Home() {
             4
           </Text>
         </HStack>
+      
+      {/* <productCard /> */}
       </VStack>
     </VStack>
   );

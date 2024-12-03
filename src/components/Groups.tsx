@@ -10,14 +10,13 @@ export function Group({ name, isActive, ...rest }: Props) {
 
   return (
     <Button
-    mr="$3"
+      mr="$3"
       minWidth="$24"
       h="$10"
       bg="$#A3A3A3"
       rounded="$md"
       justifyContent="center"
       alignItems="center"
-      borderColor="$violet500: '#6d28d9',"
       borderWidth={isActive ? 1 : 0}
       sx={{
         ":active": {

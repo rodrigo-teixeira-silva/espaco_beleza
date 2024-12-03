@@ -10,7 +10,7 @@ export function Input({ ...rest }: Props) {
       h="$14"
       px="$4"
       borderWidth="$0"
-      borderRadius="$md"
+      borderRadius="$full" 
       $focus={{
         borderWidth: 1,
         borderColor: "$violet700",
