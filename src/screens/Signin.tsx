@@ -82,7 +82,7 @@ export function Signin() {
             <Center flex={1} justifyContent="flex-end" mt="$4" >
 
               <Text color="#FFF" fontSize="$sm" mt="$33" mb="$7" fontFamily="$body">
-                Ainda não tem uma conta?{" "}
+               
                 <Pressable onPress={() => setIsClicked(!isClicked)}>
                   <Text
                     color={isClicked ? "$violet500" : "#FFF"} // Mudando a cor para violet quando clicado
@@ -91,7 +91,7 @@ export function Signin() {
                     onPress={handleNewAccount}
                     textAlign="center"
                   >
-                    clique aqui
+                     Ainda não tem uma conta? Clique aqui
                   </Text>
                 </Pressable>
               </Text>

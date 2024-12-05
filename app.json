@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "espaco_beleza",
+    "author": "Rodrigo Teixeira Silva",
     "slug": "espaco_beleza",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -13,13 +14,15 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.espaco-beleza"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.espaco_beleza"
     },
     "web": {
       "favicon": "./assets/favicon.png"

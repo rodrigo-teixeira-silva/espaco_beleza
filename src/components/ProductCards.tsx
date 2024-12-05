@@ -1,9 +1,11 @@
 import { HStack, Image, VStack, Heading, Text } from "@gluestack-ui/themed";
 import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 
-type Props = TouchableOpacityProps;
+type Props = TouchableOpacityProps & {
 
-export function productCard({ ...rest }: Props) {
+}
+
+export function ProductCard({ ...rest }: Props) {
   return (
     <TouchableOpacity {...rest}>
       <HStack 

@@ -69,14 +69,11 @@ export function SignUp() {
                 style={{ color: "#000000" }}
               />
 
-              <Button title="Criar e acessar" />
+              <Button title="Criar e acessar" mb="$9"/>
             </Center>
 
             <Center justifyContent="flex-end" mt="$6">
-              <Text color="$#FFFFFF" fontSize="$sm" mb="$6" fontFamily="$body">
-                Ainda não tem acesso?
-              </Text>
-
+             
               <Button
                 title="Voltar para login"
                 variant="outline"
