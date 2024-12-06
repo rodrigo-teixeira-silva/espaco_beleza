@@ -1,10 +1,8 @@
-import {
-  createBottomTabNavigator,
-  BottomTabNavigationProp,
+import { createBottomTabNavigator, BottomTabNavigationProp,
 } from "@react-navigation/bottom-tabs";
 
 import { gluestackUIConfig } from "../../config/gluestack-ui.config";
-import { Platform } from "react-native";
+import { Platform, View } from "react-native";
 
 import HomeSvg from "@assets/home.svg";
 import HistorySvg from "@assets/history.svg";
@@ -31,61 +29,66 @@ export function AppRoutes() {
   const iconSize = tokens.space["6"];
 
   return (
-    <Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarShowLabel: false,
-        tabBarActiveTintColor: tokens.colors.violet500,
-        tabBarInactiveTintColor: tokens.colors.gray100,
-        tabBarStyle: {
-          backgroundColor: tokens.colors.backgroundDark400,
-          borderTopWidth: 0,
-          height: Platform.OS === "android" ? "auto" : 96,
-          paddingBottom: tokens.space["12"],
-          paddingTop: tokens.space["6"],
-          justifyContent: "space-between",
-        },
+    <Navigator screenOptions={{
+      headerShown: false,
+      tabBarShowLabel: false,
+      tabBarActiveTintColor: tokens.colors.violet500,
+      tabBarInactiveTintColor: tokens.colors.violet300,
+      tabBarStyle: {
+        backgroundColor: tokens.colors.backgroundDark400,
+        borderTopWidth: 0,
+        height: Platform.OS === "android" ? "auto" : 96,
+        paddingBottom: tokens.space["12"],
+        paddingTop: tokens.space["6"],
+        display: "flex",
+        justifyContent: "space-between", 
+        flexDirection: "row",
+      },
+    }}
+  >
+
+
+
+    <Screen
+      name="home"
+      component={Home}
+      options={{
+        tabBarIcon: ({ color }) => (
+          <HomeSvg fill={color} width={iconSize} height={iconSize} />
+        ),
       }}
-    >
+    />
+  
+    <Screen
+      name="history"
+      component={History}
+      options={{
+        tabBarIcon: ({ color }) => (
+          <HistorySvg fill={color} width={iconSize} height={iconSize} />
+        ),
+      }}
+    />
+  
+    <Screen
+      name="profile"
+      component={Profile}
+      options={{
+        tabBarIcon: ({ color }) => (
+          <ProfileSvg fill={color} width={iconSize} height={iconSize} />
+        ),
+      }}
+    />
+  
+   
       <Screen
-        name="home"
-        component={Home}
+        name="product"
+        component={Product}
         options={{
-          tabBarIcon: ({ color }) => (
-            <HomeSvg fill={color} width={iconSize} height={iconSize} />
-          ),
+          tabBarButton: () => null, 
         }}
       />
-
-      <Screen
-        name="history"
-        component={History}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <HistorySvg fill={color} width={iconSize} height={iconSize} />
-          ),
-        }}
-      />
-
-      <Screen
-        name="profile"
-        component={Profile}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <ProfileSvg fill={color} width={iconSize} height={iconSize} />
-          ),
-        }}
-      />
-
-      {false && (
-        <Screen
-          name="product"
-          component={Product}
-          options={{
-            tabBarButton: () => null,
-          }}
-        />
-      )}
-    </Navigator>
+  
+  </Navigator>
+  
   );
 }

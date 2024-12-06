@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Heading, HStack, Text, VStack, Icon } from "@gluestack-ui/themed";
 import { LogOut } from "lucide-react-native";
@@ -8,6 +10,7 @@ import { ProductCard } from "@components/ProductCards";
 import { Group } from "@components/Groups";
 import BackagroundImg from "@assets/mainBackground.png";
 import { StatusBar } from "expo-status-bar";
+import { appNavigatorRoutesProps } from "@routes/app.routes";
 
 export function HomeHeader() {
   return (
@@ -55,9 +58,12 @@ export function Home() {
     "Clientes",
   ]);
 
-  const [groupSelected, setGroupSelected] = useState<string | undefined>(
-    undefined
-  );
+  const [groupSelected, setGroupSelected] = useState<string | undefined>(undefined);
+  const navigation = useNavigation<appNavigatorRoutesProps>()
+
+  function handleOpenProcedimentsDetails(){
+      navigation.navigate("product")
+  }
 
   return (
     <>
@@ -97,7 +103,7 @@ export function Home() {
           <FlatList
             data={produtos}
             keyExtractor={(item) => item}
-            renderItem={({ item }) => <ProductCard />}
+            renderItem={() =>(<ProductCard onPress={handleOpenProcedimentsDetails} />)}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingBottom: 20 }}
             ItemSeparatorComponent={() => <VStack height={12} />}

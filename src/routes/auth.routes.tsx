@@ -9,6 +9,7 @@ type AuthRoutes = {
   Signin: undefined;
   SignUp: undefined;
   RecoverPassword: undefined;
+ 
   };
 
 export type AuthNavigatorRoutesProps = NativeStackNavigationProp<AuthRoutes>;
@@ -25,6 +26,7 @@ export function AuthRoutes() {
       <Screen name="SignUp" component={SignUp} />
 
       <Screen name="RecoverPassword" component={RecoverPassword} />
-    </Navigator>
+
+      </Navigator>
   );
 }

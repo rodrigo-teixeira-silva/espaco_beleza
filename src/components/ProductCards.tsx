@@ -2,7 +2,6 @@ import { HStack, Image, VStack, Heading, Text } from "@gluestack-ui/themed";
 import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 
 type Props = TouchableOpacityProps & {
-
 }
 
 export function ProductCard({ ...rest }: Props) {
@@ -29,8 +28,6 @@ export function ProductCard({ ...rest }: Props) {
                 Limpeza de pele</Heading>
               <Text>tipos de pele</Text>
           </VStack>
-
-        
       </HStack>
     </TouchableOpacity>
   );

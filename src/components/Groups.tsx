@@ -26,7 +26,7 @@ export function Group({ name, isActive, ...rest }: Props) {
       {...rest}
     >
     <Text
-        color={isActive ? '$violet500' : '$gray200'}
+        color={isActive ? '$violet300' : '$gray100'}
         textTransform="uppercase"
         fontSize="$xs"
         fontFamily="$heading"
