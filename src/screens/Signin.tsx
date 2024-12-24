@@ -12,7 +12,7 @@ import {
 
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
-import BackagroundImg from "@assets/background.png";
+import BackagroundImg from "@assets/mainBackground.png";
 
 import Logo from "@assets/logo.svg";
 import { useState } from "react";
@@ -47,7 +47,7 @@ export function Signin() {
       />
 
       <FlatList
-        data={[1]} // Lista com um único item para renderizar a tela
+        data={[1]}
         renderItem={() => (
           <VStack flex={1} px="$10" pb="$16">
             <Center my="$24">
@@ -62,7 +62,7 @@ export function Signin() {
             </Center>
 
             <Center gap="$2">
-              <Heading color="$gray100">Acesse a conta</Heading>
+              <Heading color="#7C7C8A">Acesse a conta</Heading>
 
               <Input
                 placeholder="E-mail"
@@ -85,7 +85,7 @@ export function Signin() {
                
                 <Pressable onPress={() => setIsClicked(!isClicked)}>
                   <Text
-                    color={isClicked ? "$violet500" : "#FFF"} // Mudando a cor para violet quando clicado
+                    color={isClicked ? "$violet500" : "#7C7C8A"}
                     fontSize="$sm"
                     fontWeight="bold"
                     onPress={handleNewAccount}

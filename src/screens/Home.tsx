@@ -8,7 +8,6 @@ import { LogOut } from "lucide-react-native";
 import { UserPhoto } from "../components/UserPhoto";
 import { ProductCard } from "@components/ProductCards";
 import { Group } from "@components/Groups";
-import BackagroundImg from "@assets/mainBackground.png";
 import { StatusBar } from "expo-status-bar";
 import { appNavigatorRoutesProps } from "@routes/app.routes";
 
@@ -58,11 +57,13 @@ export function Home() {
     "Clientes",
   ]);
 
-  const [groupSelected, setGroupSelected] = useState<string | undefined>(undefined);
-  const navigation = useNavigation<appNavigatorRoutesProps>()
+  const [groupSelected, setGroupSelected] = useState<string | undefined>(
+    undefined
+  );
+  const navigation = useNavigation<appNavigatorRoutesProps>();
 
-  function handleOpenProcedimentsDetails(){
-      navigation.navigate("product")
+  function handleOpenProcedimentsDetails(product: string) {
+    navigation.navigate("product", { product });
   }
 
   return (
@@ -103,7 +104,11 @@ export function Home() {
           <FlatList
             data={produtos}
             keyExtractor={(item) => item}
-            renderItem={() =>(<ProductCard onPress={handleOpenProcedimentsDetails} />)}
+            renderItem={({ item }) => (
+              <ProductCard
+                onPress={() => handleOpenProcedimentsDetails(item)}
+              />
+            )}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingBottom: 20 }}
             ItemSeparatorComponent={() => <VStack height={12} />}

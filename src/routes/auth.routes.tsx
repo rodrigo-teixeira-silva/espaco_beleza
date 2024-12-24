@@ -1,4 +1,7 @@
-import { createNativeStackNavigator, NativeStackNavigationProp } from "@react-navigation/native-stack";
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from "@react-navigation/native-stack";
 import { Signin } from "@screens/Signin";
 import { SignUp } from "@screens/SignUp";
 import { RecoverPassword } from "@screens/RecoverPassword";
@@ -9,8 +12,8 @@ type AuthRoutes = {
   Signin: undefined;
   SignUp: undefined;
   RecoverPassword: undefined;
- 
-  };
+  Cart: undefined;
+};
 
 export type AuthNavigatorRoutesProps = NativeStackNavigationProp<AuthRoutes>;
 
@@ -26,7 +29,6 @@ export function AuthRoutes() {
       <Screen name="SignUp" component={SignUp} />
 
       <Screen name="RecoverPassword" component={RecoverPassword} />
-
-      </Navigator>
+    </Navigator>
   );
 }

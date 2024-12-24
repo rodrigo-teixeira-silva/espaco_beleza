@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { VStack, Image, Center, Text, Heading } from "@gluestack-ui/themed";
 import { useNavigation } from "@react-navigation/native";
-import BackagroundImg from "@assets/background.png";
+import BackagroundImg from "@assets/mainBackground.png";
 
 import Logo from "@assets/logo.svg";
 import { Input } from "@components/Input";
@@ -46,7 +46,7 @@ export function SignUp() {
             </Center>
 
             <Center gap="$2" flex={1}>
-              <Heading color="$gray100">Crie sua conta</Heading>
+              <Heading color="$gray400">Crie sua conta</Heading>
 
               <Input placeholder="Nome" style={{ color: "#000000" }} />
 
