@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { VStack, Image, Center, Text, Heading } from "@gluestack-ui/themed";
 import { useNavigation } from "@react-navigation/native";
 import BackagroundImg from "@assets/mainBackground.png";
+import { StatusBar } from "react-native";
 
 import Logo from "@assets/logo.svg";
 import { Input } from "@components/Input";
@@ -20,6 +22,13 @@ export function SignUp() {
   function handleGoBack() {
     navigation.goBack();
   }
+
+  useEffect(() => {
+    
+    StatusBar.setBarStyle("dark-content")
+    StatusBar.setBackgroundColor("transparent")
+    StatusBar.setTranslucent(true)
+  }, []);
 
   return (
     <KeyboardAvoidingView

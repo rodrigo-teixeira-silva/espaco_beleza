@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   VStack,
   Image,
@@ -9,6 +10,7 @@ import {
   FlatList,
   Pressable,
 } from "@gluestack-ui/themed";
+import { StatusBar } from "react-native";
 
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
@@ -34,6 +36,13 @@ export function Signin() {
   function handleRecoverPassword() {
     navigation.navigate("RecoverPassword");
   }
+
+  useEffect(() => {
+    
+    StatusBar.setBarStyle("dark-content")
+    StatusBar.setBackgroundColor("transparent")
+    StatusBar.setTranslucent(true)
+  }, []);
 
   return (
     <VStack flex={1} bg="$gray700">

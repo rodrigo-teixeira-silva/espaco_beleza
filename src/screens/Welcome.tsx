@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   VStack,
   Image,
@@ -9,14 +10,17 @@ import {
   FlatList,
   Pressable,
   View,
+
 } from "@gluestack-ui/themed";
+
+import { StatusBar } from "react-native";
 
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
 import BackagroundImg from "@assets/mainBackground.png";
 
-import Logo from "@assets/logo.svg";
 import { useState } from "react";
+import Logo from "@assets/logo.svg";
 
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
@@ -34,9 +38,20 @@ export function Welcome() {
     navigation.navigate("SignUp");
   }
 
-  function handleRecoverSignin() {
+  function handleSignin() {
     navigation.navigate("Signin");
   }
+
+  function handleRecorAccount() {
+    navigation.navigate("RecoverPassword")
+  }
+
+  useEffect(() => {
+    
+    StatusBar.setBarStyle("dark-content")
+    StatusBar.setBackgroundColor("transparent")
+    StatusBar.setTranslucent(true)
+  }, []);
 
   return (
     <VStack flex={1} bg="$gray700">
@@ -50,7 +65,7 @@ export function Welcome() {
       />
 
       <FlatList
-        data={[1]} // Lista com um único item para renderizar a tela
+        data={[1]}
         renderItem={() => (
           <VStack flex={1} px="$10" pb="$16">
             <Center my="$24">
@@ -67,10 +82,11 @@ export function Welcome() {
             <Center gap="$2">
               <Heading color="#7C7C8A">Bem vindo</Heading>
 
-              <Button title="Login" onPress={handleRecoverSignin} />
+              <Button title="Login" onPress={handleSignin} />
 
               <Button title="Criar conta" onPress={handleNewAccount} />
 
+              <Button title="Recuperar Conta" onPress={handleRecorAccount} />
             </Center>
 
             <Center mt="$5">
@@ -78,24 +94,22 @@ export function Welcome() {
                 <Text color="#7C7C8A">Siga nas redes sociais</Text>
               </View>
 
+              <HStack
+                space="3xl"
+                justifyContent="space-evenly"
+                alignItems="center"
+                mt="$4"
+              >
+                <Pressable onPress={() => console.log("Instagram")}>
+                  <Icon name="instagram" size={30} color="$gray" />
+                </Pressable>
 
-            <HStack
-              space="3xl"
-              justifyContent="space-evenly"
-              alignItems="center"
-              mt="$4"
-            >
-              <Pressable onPress={() => console.log("Instagram")}>
-                <Icon name="instagram" size={30} color="$gray" />
-              </Pressable>
-
-              <Pressable onPress={() => console.log("Facebook")}>
-                <Icon name="facebook" size={30} color="#000000" />
-              </Pressable>
-            </HStack>
+                <Pressable onPress={() => console.log("Facebook")}>
+                  <Icon name="facebook" size={30} color="#000000" />
+                </Pressable>
+              </HStack>
             </Center>
 
-      
             <Center flex={1} justifyContent="flex-end" mt="$4"></Center>
           </VStack>
         )}
