@@ -42,6 +42,7 @@ export function Profile() {
 
         <Center w="$full" gap="$4">
           <Input placeholder="Nome" bg="$gray100" />
+
           <Input value="rodrigo@gmail.com" bg="$gray100" isReadOnly />
         </Center>
 
@@ -53,7 +54,7 @@ export function Profile() {
           mt="$12"
           mb="$2"
         >
-          Alterars Senha
+          Alterar Senha
         </Heading>
 
         <Center w="$full" gap="$4">

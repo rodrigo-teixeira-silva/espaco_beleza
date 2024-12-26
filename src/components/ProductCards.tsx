@@ -1,5 +1,6 @@
-import { HStack, Image, VStack, Heading, Text } from "@gluestack-ui/themed";
+import { HStack, Image, VStack, Heading, Text, Icon  } from "@gluestack-ui/themed";
 import { TouchableOpacity, TouchableOpacityProps } from "react-native";
+import {ChevronRightIcon} from "lucide-react-native"
 
 type Props = TouchableOpacityProps & {
 }
@@ -28,6 +29,8 @@ export function ProductCard({ ...rest }: Props) {
                 Limpeza de pele</Heading>
               <Text>tipos de pele</Text>
           </VStack>
+
+          < Icon as ={ChevronRightIcon} color="$gray300"/>
       </HStack>
     </TouchableOpacity>
   );
