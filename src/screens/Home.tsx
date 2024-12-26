@@ -3,7 +3,14 @@ import { FlatList, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Heading, HStack, Text, VStack, Icon } from "@gluestack-ui/themed";
+import {
+  Heading,
+  HStack,
+  Text,
+  VStack,
+  Icon,
+  Image,
+} from "@gluestack-ui/themed";
 import { LogOut } from "lucide-react-native";
 import { UserPhoto } from "../components/UserPhoto";
 import { ProductCard } from "@components/ProductCards";
@@ -11,9 +18,19 @@ import { Group } from "@components/Groups";
 import { StatusBar } from "expo-status-bar";
 import { appNavigatorRoutesProps } from "@routes/app.routes";
 
+import BackagroundImg from "@assets/mainBackground.png";
+
 export function HomeHeader() {
   return (
     <SafeAreaView style={styles.headerContainer}>
+      <Image
+        w="$full"
+        h={924}
+        source={BackagroundImg}
+        defaultSource={BackagroundImg}
+        alt="estetica e beleza"
+        position="absolute"
+      />
       <HStack pt="$4" pb="$5" px="$8" alignItems="center" gap="$4" w="100%">
         <UserPhoto
           source={{ uri: "https://github.com/rodrigo-teixeira-silva.png" }}

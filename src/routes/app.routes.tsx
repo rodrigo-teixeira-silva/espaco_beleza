@@ -4,7 +4,7 @@ import {
 } from "@react-navigation/bottom-tabs";
 
 import { gluestackUIConfig } from "../../config/gluestack-ui.config";
-import { Platform, View } from "react-native";
+import { Platform } from "react-native";
 
 import HomeSvg from "@assets/home.svg";
 import HistorySvg from "@assets/history.svg";
@@ -14,15 +14,12 @@ import { Home } from "@screens/Home";
 import { Profile } from "@screens/Profile";
 import { History } from "@screens/History";
 import { Product } from "@screens/Product";
-//import { Cart } from "@screens/Cart";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 type AppRoutes = {
   home: undefined;
   history: undefined;
   profile: undefined;
-  product:{ product: string};
-  cart: undefined;
+  product: { product: string };
 };
 
 export type appNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
@@ -46,9 +43,6 @@ export function AppRoutes() {
           height: Platform.OS === "android" ? "auto" : 96,
           paddingBottom: tokens.space["12"],
           paddingTop: tokens.space["6"],
-          display: "flex",
-          justifyContent: "space-between",
-          flexDirection: "row",
         },
       }}
     >
@@ -82,13 +76,16 @@ export function AppRoutes() {
         }}
       />
 
-<Screen
-  name="product"
-  component={Product}
-  options={{ tabBarButton: () => null,
-    }}
-/>
+      <Screen
+        name="product"
+        component={Product}
+        options={{
+          tabBarButton: () => null,
+          tabBarItemStyle: {
+            display: "none",
+          },
+        }}
+      />
     </Navigator>
-    
   );
 }
