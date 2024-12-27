@@ -1,6 +1,7 @@
+import { useState } from 'react'
 import { ScrollView, TouchableOpacity } from "react-native";
 import { ScreenHeader } from "@components/ScreenHeader";
-import *as ImagePicker from "expo-image-picker"
+import * as ImagePicker from "expo-image-picker";
 
 import { UserPhoto } from "@components/UserPhoto";
 import { VStack, Text, Heading, Center } from "@gluestack-ui/themed";
@@ -10,8 +11,23 @@ import { Button } from "@components/Button";
 
 export function Profile() {
 
-  async function handleUserPhotoSelect(){
-    await ImagePicker.launchImageLibraryAsync()
+  const [userPhoto, setUserPhoto] = useState(
+    'https://github.com/arthurrios.png',
+  )
+
+  async function handleUserPhotoSelect() {
+    const photoSelected = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 1,
+      aspect: [4, 4],
+      allowsEditing: true,
+      // base64: true,
+    });
+    if (photoSelected.canceled) {
+      return;
+    }
+    // console.log(photoSelected.assets[0]);
+    setUserPhoto(photoSelected.assets[0].uri)
   }
 
   return (
@@ -23,12 +39,12 @@ export function Profile() {
       <ScrollView
         contentContainerStyle={{
           paddingVertical: 16,
-          paddingHorizontal: 30
+          paddingHorizontal: 30,
         }}
       >
         <Center mt="$6" px="$10">
           <UserPhoto
-            source={{ uri: "https:github.com/rodrigo-teixeira-silva.png" }}
+            source={{ uri: userPhoto  }}
             alt="Foto de usuário"
             size="xl"
           />
