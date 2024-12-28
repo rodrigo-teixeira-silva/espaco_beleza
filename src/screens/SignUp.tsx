@@ -1,10 +1,21 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { VStack, Image, Center, Text, Heading } from "@gluestack-ui/themed";
+import {
+  VStack,
+  Image,
+  Center,
+  Text,
+  Heading,
+  onChange,
+} from "@gluestack-ui/themed";
 import { useNavigation } from "@react-navigation/native";
 import BackagroundImg from "@assets/mainBackground.png";
 import { StatusBar } from "react-native";
 import loreBackground from "@assets/loreBackground.png";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import { useForm, Controller } from "react-hook-form";
 
 import Logo from "@assets/logo.svg";
 import { Input } from "@components/Input";
@@ -16,39 +27,70 @@ import {
   View as RNView,
 } from "react-native";
 
-export function SignUp() {
-  const [passwordRedefinitionVisible, setPasswordRedefinitionVisible] = useState(false);
-  const navigation = useNavigation();
+type FormDataProps = {
+  name: string;
+  email: string;
+  password: string;
+  password_confirm: string;
+};
 
+const signUpSchema = yup.object({
+  name: yup.string().required("Informe o nome."),
+  email: yup.string().required("Informe o e-mail.").email("E-mail inválido."),
+  password: yup
+    .string()
+    .required("Informe a senha.")
+    .min(6, "A senha deve ter pelo menos seis dígitos."),
+  password_confirm: yup
+    .string()
+    .required("Confirme a senha")
+    .oneOf([yup.ref("password"), ""], "A confirmação da senha não confere."),
+});
+
+export function SignUp() {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormDataProps>({
+    resolver: yupResolver(signUpSchema),
+  });
+
+  const navigation = useNavigation();
   function handleGoBack() {
     navigation.goBack();
   }
 
   useEffect(() => {
-    
-    StatusBar.setBarStyle("dark-content")
-    StatusBar.setBackgroundColor("transparent")
-    StatusBar.setTranslucent(true)
+    StatusBar.setBarStyle("dark-content");
+    StatusBar.setBackgroundColor("transparent");
+    StatusBar.setTranslucent(true);
   }, []);
 
+  function handleSignUp({
+    name,
+    email,
+    password,
+    password_confirm,
+  }: FormDataProps) {
+    console.log({ name, email, password, password_confirm });
+  }
+
   return (
-    
     <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"} 
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={{ flex: 1 }}
     >
-      
-      
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <VStack flex={1} bg="$gray700">
-        <Image
-        w="$full"
-        h={924}
-        source={loreBackground}
-        defaultSource={loreBackground}
-        alt="estetica e beleza"
-        position="absolute"
-      />
+          <Image
+            w="$full"
+            h={924}
+            source={loreBackground}
+            defaultSource={loreBackground}
+            alt="estetica e beleza"
+            position="absolute"
+          />
 
           <VStack flex={1} px="$10" pb="$16">
             <Center my="$24">
@@ -58,35 +100,85 @@ export function SignUp() {
               </Text>
             </Center>
 
-            <Center gap="$2" flex={1}>
+            <Center gap="$0" flex={1}>
               <Heading color="$gray400">Crie sua conta</Heading>
 
-              <Input placeholder="Nome" style={{ color: "#000000" }} />
-
-              <Input
-                placeholder="E-mail"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                style={{ color: "#000000" }}
+              <Controller
+                control={control}
+                name="name"
+                rules={{
+                  required: "Informe o nome.",
+                }}
+                render={({ field: { onChange, value } }) => (
+                  <Input
+                    placeholder="Nome"
+                    style={{ color: "#000000" }}
+                    onChangeText={onChange}
+                    errorMessage={errors.name?.message}
+                  />
+                )}
               />
 
-              <Input
-                placeholder="Senha"
-                secureTextEntry
-                style={{ color: "#000000" }}
+              <Controller
+                control={control}
+                name="email"
+                rules={{
+                  required: "Informe o email.",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "E-mail inválido",
+                  },
+                }}
+                render={({ field: { onChange, value } }) => (
+                  <Input
+                    placeholder="E-mail"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    style={{ color: "#000000" }}
+                    onChangeText={onChange}
+                    errorMessage={errors.email?.message}
+                  />
+                )}
               />
 
-              <Input
-                placeholder="Confirme a senha"
-                secureTextEntry
-                style={{ color: "#000000" }}
+              <Controller
+                control={control}
+                name="password"
+                render={({ field: { onChange, value } }) => (
+                  <Input
+                    placeholder="Senha"
+                    secureTextEntry
+                    style={{ color: "#000000" }}
+                    onChangeText={onChange}
+                    errorMessage={errors.password?.message}
+                  />
+                )}
               />
 
-              <Button title="Criar e acessar" mb="$9"/>
+              <Controller
+                control={control}
+                name="password_confirm"
+                render={({ field: { onChange, value } }) => (
+                  <Input
+                    placeholder="Confirme a senha"
+                    secureTextEntry
+                    style={{ color: "#000000" }}
+                    onChangeText={onChange}
+                    onSubmitEditing={handleSubmit(handleSignUp)}
+                    returnKeyType="send"
+                    errorMessage={errors.password_confirm?.message}
+                  />
+                )}
+              />
+
+              <Button
+                title="Criar e acessar"
+                mb="$9"
+                onPress={handleSubmit(handleSignUp)}
+              />
             </Center>
 
             <Center justifyContent="flex-end" mt="$6">
-             
               <Button
                 title="Voltar para login"
                 variant="outline"
