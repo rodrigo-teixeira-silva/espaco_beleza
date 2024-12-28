@@ -24,15 +24,11 @@ const { Navigator, Screen } = createNativeStackNavigator<AuthRoutes>();
 export function AuthRoutes() {
   return (
     <Navigator screenOptions={{ headerShown: false }}>
-
-      <Screen name="SplashScreen" component={SplashScreen}/>
-
+      {/* Configuração das telas */}
+      <Screen name="SplashScreen" component={SplashScreen} />
       <Screen name="Welcome" component={Welcome} />
-
       <Screen name="Signin" component={Signin} />
-
       <Screen name="SignUp" component={SignUp} />
-
       <Screen name="RecoverPassword" component={RecoverPassword} />
     </Navigator>
   );

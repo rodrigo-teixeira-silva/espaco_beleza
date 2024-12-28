@@ -1,39 +1,55 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   VStack,
   Image,
   Center,
   Text,
   Heading,
-  ButtonGroup,
   HStack,
-  FlatList,
-  Pressable,
   Divider,
+  Pressable,
 } from "@gluestack-ui/themed";
-import { StatusBar } from "react-native";
-
-import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
-
-import loreBackground from "@assets/loreBackground.png";
-
-import facebook from "@assets/facebook.png";
-import google from "@assets/google.png";
-
-import Logo from "@assets/logo.svg";
-import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { StatusBar, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
-import { useNavigation } from "@react-navigation/native";
-
 import Icon from "react-native-vector-icons/FontAwesome";
 
+import Logo from "@assets/logo.svg";
+import loreBackground from "@assets/loreBackground.png";
+import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
+
+type FormDataProps = {
+  email: string;
+  password: string;
+};
+
+const signInSchema = yup.object({
+  email: yup.string().required("Informe o e-mail.").email("E-mail inválido."),
+  password: yup.string().required("Informe a senha."),
+});
+
 export function Signin() {
-  const [borderColor, setBorderColor] = useState("#7C7C8A");
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormDataProps>({
+    resolver: yupResolver(signInSchema),
+  });
+
+  const [isClicked, setIsClicked] = useState(false);
+
+  function handleSignIn({ email, password }: FormDataProps) {
+    console.log("Login realizado:", { email, password });
+    // Aqui você pode implementar a lógica de autenticação, como chamada para API
+  }
 
   function handleNewAccount() {
     navigation.navigate("SignUp");
@@ -43,22 +59,28 @@ export function Signin() {
     navigation.navigate("RecoverPassword");
   }
 
-
+  useEffect(() => {
+    StatusBar.setBarStyle("dark-content");
+    StatusBar.setBackgroundColor("transparent");
+    StatusBar.setTranslucent(true);
+  }, []);
 
   return (
-    <VStack flex={1} bg="$gray700">
-      <Image
-        w="$full"
-        h={924}
-        source={loreBackground}
-        defaultSource={loreBackground}
-        alt="estetica e beleza"
-        position="absolute"
-      />
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{ flex: 1 }}
+    >
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <VStack flex={1} bg="$gray700">
+          <Image
+            w="$full"
+            h={924}
+            source={loreBackground}
+            defaultSource={loreBackground}
+            alt="estetica e beleza"
+            position="absolute"
+          />
 
-      <FlatList
-        data={[1]}
-        renderItem={() => (
           <VStack flex={1} px="$10" pb="$16">
             <Center my="$24">
               <Logo width={70} height={70} />
@@ -71,22 +93,43 @@ export function Signin() {
               </Text>
             </Center>
 
-            <Center gap="$2">
-              <Heading color="#7C7C8A">Acesse a conta</Heading>
+            <Center gap="$2" flex={1}>
+              <Heading color="$gray400">Acesse sua conta</Heading>
 
-              <Input
-                placeholder="E-mail"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                style={{ color: "#000000" }}
-              />
-              <Input
-                placeholder="Senha"
-                secureTextEntry
-                style={{ color: "#000000" }}
+              {/* Campo de E-mail */}
+              <Controller
+                control={control}
+                name="email"
+                render={({ field: { onChange, value } }) => (
+                  <Input
+                    placeholder="E-mail"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    style={{ color: "#000000" }}
+                    onChangeText={onChange}
+                    value={value}
+                    errorMessage={errors.email?.message}
+                  />
+                )}
               />
 
-              <Button title="Acessar" />
+              {/* Campo de Senha */}
+              <Controller
+                control={control}
+                name="password"
+                render={({ field: { onChange, value } }) => (
+                  <Input
+                    placeholder="Senha"
+                    secureTextEntry
+                    style={{ color: "#000000" }}
+                    onChangeText={onChange}
+                    value={value}
+                    errorMessage={errors.password?.message}
+                  />
+                )}
+              />
+
+              <Button title="Acessar" onPress={handleSubmit(handleSignIn)} />
 
               {/* Linha com "ou" */}
               <HStack
@@ -102,56 +145,45 @@ export function Signin() {
                 <Divider flex={1} bg="#7C7C8A" />
               </HStack>
 
+              {/* Botões de login social */}
               <HStack
                 space="3xl"
                 justifyContent="space-evenly"
                 alignItems="center"
                 mt="$4"
               >
-                <Pressable onPress={() => console.log("Google")}>
+                <Pressable onPress={() => console.log("Login com Google")}>
                   <Icon name="google" size={30} color="#FFFFFF" />
                 </Pressable>
 
-                <Pressable onPress={() => console.log("Facebook")}>
+                <Pressable onPress={() => console.log("Login com Facebook")}>
                   <Icon name="facebook" size={30} color="#FFFFFF" />
                 </Pressable>
-      
-                </HStack>
-
-
-
-
-
-
-
+              </HStack>
             </Center>
 
-            <Center flex={1} justifyContent="flex-end" mt="$4">
-              <Text
-                color="#FFF"
-                fontSize="$sm"
-                mt="$33"
-                mb="$7"
-                fontFamily="$body"
-              >
-                <Pressable onPress={() => setIsClicked(!isClicked)}>
-                  <Text
-                    color={isClicked ? "$violet500" : "#7C7C8A"}
-                    fontSize="$sm"
-                    fontWeight="bold"
-                    onPress={handleNewAccount}
-                    textAlign="center"
-                  >
-                    Ainda não tem uma conta? Clique aqui
-                  </Text>
-                </Pressable>
-              </Text>
+            {/* Navegar para recuperar senha ou criar nova conta */}
+            <Center justifyContent="flex-end" mt="$6">
+              <Pressable onPress={handleRecoverPassword}>
+                <Text color="#7C7C8A" fontSize="$sm" fontWeight="bold">
+                  Esqueceu sua senha? Clique aqui
+                </Text>
+              </Pressable>
+
+              <Pressable onPress={handleNewAccount}>
+                <Text
+                  color={isClicked ? "$violet500" : "#7C7C8A"}
+                  fontSize="$sm"
+                  fontWeight="bold"
+                  mt="$4"
+                >
+                  Ainda não tem uma conta? Clique aqui
+                </Text>
+              </Pressable>
             </Center>
           </VStack>
-        )}
-        keyExtractor={(item, index) => index.toString()}
-        keyboardShouldPersistTaps="handled"
-      />
-    </VStack>
+        </VStack>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
