@@ -17,7 +17,7 @@ import { StatusBar } from "react-native";
 
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
-import BackagroundImg from "@assets/mainBackground.png";
+import background from "@assets/background.png"
 
 import { useState } from "react";
 import Logo from "@assets/logo.svg";
@@ -57,9 +57,9 @@ export function Welcome() {
     <VStack flex={1} bg="$gray700">
       <Image
         w="$full"
-        h={924}
-        source={BackagroundImg}
-        defaultSource={BackagroundImg}
+        h={960}
+        source={background}
+        defaultSource={background}
         alt="estetica e beleza"
         position="absolute"
       />

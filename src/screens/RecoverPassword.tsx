@@ -10,7 +10,7 @@ import {
 
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
-import BackagroundImg from "@assets/mainBackground.png";
+import loreBackground from "@assets/loreBackground.png";
 
 import Logo from "@assets/logo.svg";
 import { useState, useEffect } from "react";
@@ -60,8 +60,8 @@ export function RecoverPassword() {
           <Image
             w="$full"
             h={924}
-            source={BackagroundImg}
-            defaultSource={BackagroundImg}
+            source={loreBackground}
+            defaultSource={loreBackground}
             alt="estetica e beleza"
             position="absolute"
           />

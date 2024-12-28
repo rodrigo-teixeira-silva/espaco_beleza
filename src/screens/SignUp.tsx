@@ -4,6 +4,7 @@ import { VStack, Image, Center, Text, Heading } from "@gluestack-ui/themed";
 import { useNavigation } from "@react-navigation/native";
 import BackagroundImg from "@assets/mainBackground.png";
 import { StatusBar } from "react-native";
+import loreBackground from "@assets/loreBackground.png";
 
 import Logo from "@assets/logo.svg";
 import { Input } from "@components/Input";
@@ -31,20 +32,23 @@ export function SignUp() {
   }, []);
 
   return (
+    
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"} 
       style={{ flex: 1 }}
     >
+      
+      
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <VStack flex={1} bg="$gray700">
-          <Image
-            w="$full"
-            h={924}
-            source={BackagroundImg}
-            defaultSource={BackagroundImg}
-            alt="estetica e beleza"
-            position="absolute"
-          />
+        <Image
+        w="$full"
+        h={924}
+        source={loreBackground}
+        defaultSource={loreBackground}
+        alt="estetica e beleza"
+        position="absolute"
+      />
 
           <VStack flex={1} px="$10" pb="$16">
             <Center my="$24">

@@ -1,33 +1,62 @@
-import { useState } from 'react'
-import { ScrollView, TouchableOpacity } from "react-native";
+import { useState } from "react";
+import { ScrollView, TouchableOpacity, Alert } from "react-native";
 import { ScreenHeader } from "@components/ScreenHeader";
 import * as ImagePicker from "expo-image-picker";
 
 import { UserPhoto } from "@components/UserPhoto";
-import { VStack, Text, Heading, Center } from "@gluestack-ui/themed";
+import * as FileSystem from "expo-file-system";
+import { ToastMessage } from "@components/ToastMessage";
+
+import { VStack, Text, Heading, Center, useToast } from "@gluestack-ui/themed";
 import { StatusBar } from "expo-status-bar";
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 
 export function Profile() {
-
   const [userPhoto, setUserPhoto] = useState(
-    'https://github.com/arthurrios.png',
-  )
+    "https://github.com/rodrigo-teixeira-silva.png"
+  );
+
+  const toast = useToast();
 
   async function handleUserPhotoSelect() {
-    const photoSelected = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      quality: 1,
-      aspect: [4, 4],
-      allowsEditing: true,
-      // base64: true,
-    });
-    if (photoSelected.canceled) {
-      return;
+    try {
+      const photoSelected = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 1,
+        aspect: [4, 4],
+        allowsEditing: true,
+      });
+
+      if (photoSelected.canceled) {
+        return;
+      }
+
+      const photoUri = photoSelected.assets[0].uri;
+
+      if (photoUri) {
+        const photoInfo = (await FileSystem.getInfoAsync(photoUri)) as {
+          size: number;
+        };
+        if (photoInfo.size && photoInfo.size / 1024 / 1024 > 1) {
+          return toast.show({
+            placement: "top",
+            render: ({ id }) => (
+              <ToastMessage
+                id={id}
+                action="error"
+                title="Essa imagem é muito grande. Use uma imagem de até 5MB."
+                onClose={() => toast.close(id)}
+              />
+            ),
+          });
+        }
+
+        setUserPhoto(photoSelected.assets[0].uri);
+      }
+    } catch (error) {
+      console.log(error);
     }
-    // console.log(photoSelected.assets[0]);
-    setUserPhoto(photoSelected.assets[0].uri)
   }
 
   return (
@@ -44,7 +73,7 @@ export function Profile() {
       >
         <Center mt="$6" px="$10">
           <UserPhoto
-            source={{ uri: userPhoto  }}
+            source={{ uri: userPhoto }}
             alt="Foto de usuário"
             size="xl"
           />
