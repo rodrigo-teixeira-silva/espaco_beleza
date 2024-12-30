@@ -9,9 +9,10 @@ import { Group } from "@components/Groups";
 
 export function HomeHeader() {
   return (
-    <SafeAreaView style={{ backgroundColor: "#A3A3A3" }}>
+    
+      <SafeAreaView style={{ backgroundColor: "#202024" }}>
       <HStack
-        pt="$16"
+        pt="$5"
         pb="$5"
         px="$8"
         alignItems="center"
