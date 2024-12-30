@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -8,20 +8,13 @@ import {
   HStack,
   Text,
   VStack,
-  Icon,
-  Image,
 } from "@gluestack-ui/themed";
-import { LogOut } from "lucide-react-native";
-import { UserPhoto } from "../components/UserPhoto";
+import { StatusBar } from "expo-status-bar";
+import { HomeHeader } from "@components/HomeHeader";
 import { ProductCard } from "@components/ProductCards";
 import { Group } from "@components/Groups";
-import { StatusBar } from "expo-status-bar";
 import { appNavigatorRoutesProps } from "@routes/app.routes";
-import { HomeHeader } from "@components/HomeHeader";
-
-// import BackagroundImg from "@assets/mainBackground.png";
-
-
+import { Carrousel } from "@components/Carrousel";
 
 export function Home() {
   const [produtos, setProdutos] = useState([
@@ -36,16 +29,22 @@ export function Home() {
 
   const [group, setGroup] = useState([
     "Produtos",
-    "Consultas",
+    "Serviços",
     "Treinamentos",
-    "Vendas",
-    "Clientes",
+    "Parceiros ",
   ]);
 
   const [groupSelected, setGroupSelected] = useState<string | undefined>(
     undefined
   );
+
   const navigation = useNavigation<appNavigatorRoutesProps>();
+
+  const carouselImages = [
+    require("@assets/face1.png"),
+    require("@assets/face2.png"),
+    require("@assets/face3.png"),
+  ];
 
   function handleOpenProcedimentsDetails(product: string) {
     navigation.navigate("product", { product });
@@ -53,9 +52,15 @@ export function Home() {
 
   return (
     <>
-      <StatusBar style="light" backgroundColor="#A3A3A3" />
-      <VStack flex={1} backgroundColor="#DBDBDB">
-        <HomeHeader />
+      <StatusBar style="light" backgroundColor="#202024" />
+      <VStack flex={1} backgroundColor="#121214">
+        {/* HomeHeader with borderBottom */}
+        <VStack style={styles.headerContainer}>
+          <HomeHeader />
+        </VStack>
+
+     
+        <Carrousel images={carouselImages} />
 
         <FlatList
           data={group}
@@ -77,7 +82,7 @@ export function Home() {
 
         <VStack px="$8" flex={1}>
           <HStack justifyContent="space-between" mb="$5" alignItems="center">
-            <Heading color="#000e21" fontSize="$sm" fontFamily="$heading">
+            <Heading color="#FFFFFF" fontSize="$sm" fontFamily="$heading">
               Aulas
             </Heading>
 
@@ -106,8 +111,7 @@ export function Home() {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    backgroundColor: "#A3A3A3",
-    paddingTop: 20,
-    width: "100%",
+    borderBottomWidth: 1, 
+    borderBottomColor: "#000", 
   },
 });
