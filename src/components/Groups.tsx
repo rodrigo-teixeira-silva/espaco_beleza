@@ -13,7 +13,7 @@ export function Group({ name, isActive, ...rest }: Props) {
       mr="$3"
       minWidth="$24"
       h="$10"
-      bg="$#A3A3A3"
+      bg="$gray400"
       rounded="$md"
       justifyContent="center"
       alignItems="center"
@@ -21,12 +21,13 @@ export function Group({ name, isActive, ...rest }: Props) {
       sx={{
         ":active": {
           borderWidth: 1,
+         
         },
       }}
       {...rest}
     >
     <Text
-        color={isActive ? '$violet300' : '$gray100'}
+        color={isActive ? '$violet800' : '$gray100'}
         textTransform="uppercase"
         fontSize="$xs"
         fontFamily="$heading"

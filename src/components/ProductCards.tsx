@@ -8,30 +8,32 @@ type Props = TouchableOpacityProps & {
 export function ProductCard({ ...rest }: Props) {
   return (
     <TouchableOpacity {...rest}>
-      <HStack 
-      bg="$gray200" 
-      alignItems="center" p="$2" pr="$4" rounded="$md"
+      <VStack
+      bg="$gray400" 
+      alignItems="center" p="$2" pr="$4" rounded="$md"w="$40" 
+        
       >
         <Image
           source={{
             uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKlWdBY1scPdt4m5lGNgx6WSVe9w3NJjDWpQ&s.png",
           }}
           alt="Imagem do treinamento"
-          w="$16"
-          h="$16"
+          w="$24"
+          h="$24"
           rounded="$md"
           mr="$4"
           resizeMode="cover"
           />
 
           <VStack flex={1}>
-              <Heading fontSize="$lg" color="#7C7C8A" fontFamily="$heading">
+              <Heading fontSize="$lg" color="$gray100" fontFamily="$heading">
                 Limpeza de pele</Heading>
-              <Text>tipos de pele</Text>
+              <Text color="$gray100">tipos de pele</Text>
           </VStack>
 
-          < Icon as ={ChevronRightIcon} color="$gray300"/>
-      </HStack>
+
+          < Icon as ={ChevronRightIcon} color="$gray100"/>
+      </VStack>
     </TouchableOpacity>
   );
 }

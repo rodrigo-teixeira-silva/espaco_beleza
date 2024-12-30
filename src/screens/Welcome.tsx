@@ -56,6 +56,7 @@ export function Welcome() {
   return (
     <VStack flex={1} bg="$gray700">
       <Image
+      
         w="$full"
         h={960}
         source={background}
@@ -67,20 +68,21 @@ export function Welcome() {
       <FlatList
         data={[1]}
         renderItem={() => (
-          <VStack flex={1} px="$10" pb="$16">
-            <Center my="$24">
+          <VStack flex={1} px="$10" pb="$16" mt="$1/5">
+            <Center my="$24" >
               <Logo width={70} height={70} />
-              <Text fontSize="$2xl" fontWeight="bold">
+
+              <Text fontSize="$2xl" fontWeight="bold" color="#000000">
                 LORENA
               </Text>
 
-              <Text color="#7C7C8A" fontSize="$2xl" mt="$2">
+              <Text color="#000000" fontSize="$2xl" mt="$2">
                 Espaço estética
               </Text>
             </Center>
 
             <Center gap="$2">
-              <Heading color="#7C7C8A">Bem vindo</Heading>
+              <Heading color="#000000" >Bem vindo</Heading >
 
               <Button title="Login" onPress={handleSignin} />
 

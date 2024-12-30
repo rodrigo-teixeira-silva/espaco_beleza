@@ -12,7 +12,7 @@ export function Button ({title, isLoading = false, ...rest}: Props) {
     <GluestackButton
     w="$full"
     h="$14"
-    bg="$violet400"
+    bg="$gold900"
     borderWidth={"$0"}
     borderColor="$violet700"
     rounded="$full"
