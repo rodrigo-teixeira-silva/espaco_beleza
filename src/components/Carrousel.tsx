@@ -12,13 +12,13 @@ export function Carrousel({ images }: CarrouselProps) {
   const flatListRef = useRef<FlatList>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Função para mover o carrossel automaticamente
+
   useEffect(() => {
     const interval = setInterval(() => {
       const nextIndex = (currentIndex + 1) % images.length;
       setCurrentIndex(nextIndex);
       flatListRef.current?.scrollToIndex({ index: nextIndex, animated: true });
-    }, 3000); // 3 segundos entre mudanças
+    }, 3000); 
 
     return () => clearInterval(interval);
   }, [currentIndex, images.length]);

@@ -60,9 +60,11 @@ export function Profile() {
   }
 
   return (
-    <VStack flex={1} backgroundColor="#DBDBDB">
-      <ScreenHeader title="Perfil" />
 
+      <VStack flex={1} backgroundColor="#121214">
+<StatusBar style="light" backgroundColor="#202024" />
+
+   
       <StatusBar backgroundColor="#A3A3A3" />
 
       <ScrollView

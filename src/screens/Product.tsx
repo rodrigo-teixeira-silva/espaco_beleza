@@ -97,6 +97,7 @@ export function Product() {
             >
               <HStack>
                 {/* <seriesSvg/> */}
+                <RepetitionSvg />
                 <Text color="$#FFF" ml="$2">
                   tipo de tratamento
                 </Text>
@@ -110,7 +111,10 @@ export function Product() {
               </HStack>
             </HStack>
 
-            <Button title="Adicionar ao carrinho" />
+            <Button title="Adicionar ao carrinho" mb="$4"  
+            />
+
+            <Button title="Comprar agora" />
           </Box>
         </VStack>
       </ScrollView>
