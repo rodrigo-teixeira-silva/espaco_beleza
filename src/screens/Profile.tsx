@@ -60,12 +60,8 @@ export function Profile() {
   }
 
   return (
-
-      <VStack flex={1} backgroundColor="#121214">
-<StatusBar style="light" backgroundColor="#202024" />
-
-   
-      <StatusBar backgroundColor="#A3A3A3" />
+    <VStack flex={1} backgroundColor="#121214">
+      <StatusBar style="light" backgroundColor="#202024" />
 
       <ScrollView
         contentContainerStyle={{
@@ -81,14 +77,14 @@ export function Profile() {
           />
 
           <TouchableOpacity onPress={handleUserPhotoSelect}>
-            <Text color="$gray600" fontFamily="$heading" mt="$2" mb="$8">
+            <Text color="$violet500" fontFamily="$heading" mt="$2" mb="$8">
               Alterar foto
             </Text>
           </TouchableOpacity>
         </Center>
 
         <Center w="$full" gap="$4">
-          <Input placeholder="Nome" bg="$gray100" />
+          <Input placeholder="Nome" bg="$gray500" />
 
           <Input value="rodrigo@gmail.com" bg="$gray100" isReadOnly />
         </Center>
@@ -96,7 +92,7 @@ export function Profile() {
         <Heading
           alignSelf="flex-start"
           fontFamily="$heading"
-          color="@gray200"
+          color="$violet500"
           fontSize="$md"
           mt="$12"
           mb="$2"
@@ -105,9 +101,9 @@ export function Profile() {
         </Heading>
 
         <Center w="$full" gap="$4">
-          <Input placeholder="Senha antiga" bg="$gray100" secureTextEntry />
-          <Input placeholder="Nova senha" bg="$gray100" secureTextEntry />
-          <Input placeholder="Confirme a senha" bg="$gray100" secureTextEntry />
+          <Input placeholder="Senha antiga" bg="$gray500" secureTextEntry />
+          <Input placeholder="Nova senha" bg="$gray500" secureTextEntry />
+          <Input placeholder="Confirme a senha" bg="$gray500" secureTextEntry />
           <Button title="Atualizar" mb="$4" />
         </Center>
       </ScrollView>

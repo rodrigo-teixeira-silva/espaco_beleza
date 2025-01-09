@@ -7,7 +7,7 @@ import { VStack, Center, Heading, HStack, Text } from "@gluestack-ui/themed";
 import { HomeHeader } from "@components/HomeHeader";
 import { ProductCard } from "@components/ProductCards";
 import { Group } from "@components/Groups";
-import { appNavigatorRoutesProps } from "@routes/app.routes";
+import { AppTabNavigationProps } from "@routes/AppTabs";
 import { Carrousel } from "@components/Carrousel";
 import { Input } from "@components/Input";
 
@@ -33,7 +33,7 @@ export function Home() {
     undefined
   );
 
-  const navigation = useNavigation<appNavigatorRoutesProps>();
+  const navigation = useNavigation<AppTabNavigationProps>();
 
   const carouselImages = [
     require("@assets/face1.png"),
