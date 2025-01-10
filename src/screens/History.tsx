@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { SectionList } from "react-native";
 import { Center, Heading, VStack, Text } from "@gluestack-ui/themed";
+import { StatusBar } from "expo-status-bar";
 
 import { ScreenHeader } from "@components/ScreenHeader";
 import { HistoryCard } from "@components/HistoryCard";
@@ -19,7 +20,8 @@ export function History() {
   ]);
 
   return (
-    <VStack flex={1} backgroundColor="#DBDBDB">
+    <VStack flex={1} backgroundColor="#121214">
+      <StatusBar style="light" backgroundColor="#121214" />
       <ScreenHeader title="Histórico de agendamentos" />
 
       <SectionList

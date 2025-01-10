@@ -1,27 +1,15 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { SafeAreaView } from "react-native-safe-area-context";
-import {
-  Heading,
-  HStack,
-  Text,
-  VStack,
-  Icon,
-  Image,
-} from "@gluestack-ui/themed";
-import { LogOut } from "lucide-react-native";
-import { UserPhoto } from "../components/UserPhoto";
+import { StatusBar } from "expo-status-bar";
+import { VStack, Center, Heading, HStack, Text } from "@gluestack-ui/themed";
+import { HomeHeader } from "@components/HomeHeader";
 import { ProductCard } from "@components/ProductCards";
 import { Group } from "@components/Groups";
-import { StatusBar } from "expo-status-bar";
 import { appNavigatorRoutesProps } from "@routes/app.routes";
-import { HomeHeader } from "@components/HomeHeader";
-
-// import BackagroundImg from "@assets/mainBackground.png";
-
-
+import { Carrousel } from "@components/Carrousel";
+import { Input } from "@components/Input";
 
 export function Home() {
   const [produtos, setProdutos] = useState([
@@ -32,52 +20,74 @@ export function Home() {
     "Produto 1",
     "Produto 2",
     "Produto 3",
+    "Produto 4",
   ]);
 
   const [group, setGroup] = useState([
     "Produtos",
-    "Consultas",
+    "Serviços",
     "Treinamentos",
-    "Vendas",
-    "Clientes",
+    "Parceiros",
   ]);
 
   const [groupSelected, setGroupSelected] = useState<string | undefined>(
     undefined
   );
+
   const navigation = useNavigation<appNavigatorRoutesProps>();
+
+  const carouselImages = [
+    require("@assets/face1.png"),
+    require("@assets/face2.png"),
+    require("@assets/face3.png"),
+  ];
 
   function handleOpenProcedimentsDetails(product: string) {
     navigation.navigate("product", { product });
   }
 
-  return (
-    <>
-      <StatusBar style="light" backgroundColor="#A3A3A3" />
-      <VStack flex={1} backgroundColor="#DBDBDB">
-        <HomeHeader />
+  const renderContent = ({ item }: { item: any }) => {
+    if (item.type === "header") {
+      return <HomeHeader />;
+    }
 
+    if (item.type === "search") {
+      return (
+        <Center w="$full" gap="$4" style={{ marginTop: 16 }}>
+          <Input placeholder="Buscar..." bg="$gray400" />
+        </Center>
+      );
+    }
+
+    if (item.type === "carousel") {
+      return <Carrousel images={carouselImages} />;
+    }
+
+    if (item.type === "group") {
+      return (
         <FlatList
           data={group}
-          keyExtractor={(item) => item}
-          renderItem={({ item }) => (
+          keyExtractor={(groupItem) => groupItem}
+          renderItem={({ item: groupItem }) => (
             <Group
-              name={item}
-              isActive={
-                groupSelected?.toUpperCase() === item.toLocaleLowerCase()
-              }
-              onPress={() => setGroupSelected(item)}
+              name={groupItem}
+              isActive={groupSelected === groupItem}
+              onPress={() => setGroupSelected(groupItem)}
             />
           )}
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingHorizontal: 32 }}
-          style={{ margin: 40, maxHeight: 44, minHeight: 44 }}
+          contentContainerStyle={{ paddingHorizontal: 2 }}
+          style={{ margin: 16, maxHeight: 44, minHeight: 44 }}
         />
+      );
+    }
 
-        <VStack px="$8" flex={1}>
+    if (item.type === "products") {
+      return (
+        <VStack px="$8">
           <HStack justifyContent="space-between" mb="$5" alignItems="center">
-            <Heading color="#000e21" fontSize="$sm" fontFamily="$heading">
+            <Heading color="#FFFFFF" fontSize="$sm" fontFamily="$heading">
               Aulas
             </Heading>
 
@@ -88,17 +98,43 @@ export function Home() {
 
           <FlatList
             data={produtos}
-            keyExtractor={(item) => item}
-            renderItem={({ item }) => (
+            keyExtractor={(product) => product}
+            renderItem={({ item: product }) => (
               <ProductCard
-                onPress={() => handleOpenProcedimentsDetails(item)}
+                onPress={() => handleOpenProcedimentsDetails(product)}
               />
             )}
+            numColumns={2}
+            columnWrapperStyle={{ justifyContent: "space-between" }}
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 20 }}
             ItemSeparatorComponent={() => <VStack height={12} />}
           />
         </VStack>
+      );
+    }
+
+    return null;
+  };
+
+  const content = [
+    { type: "header" },
+    { type: "search" },
+    { type: "carousel" },
+    { type: "group" },
+    { type: "products" }, 
+  ];
+
+  return (
+    <>
+      <StatusBar style="light" backgroundColor="#202024" />
+        <VStack flex={1} backgroundColor="#121214">
+        <FlatList
+          data={content}
+          keyExtractor={(item) => item.type}
+          renderItem={renderContent}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 20 }}
+        />
       </VStack>
     </>
   );
@@ -106,8 +142,7 @@ export function Home() {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    backgroundColor: "#A3A3A3",
-    paddingTop: 20,
-    width: "100%",
+    borderBottomWidth: 1,
+    borderBottomColor: "#000",
   },
 });
