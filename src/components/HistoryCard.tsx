@@ -7,7 +7,7 @@ export function HistoryCard() {
       px="$5"
       py="$4"
       mb="$3"
-      bg="$gray200"
+      bg="$blue500"
       rounded="$md"
       alignItems="center"
       justifyContent="space-between"
@@ -27,7 +27,7 @@ export function HistoryCard() {
           tipos de pele
         </Text>
       </VStack>
-      <Text color="$gray300" fontSize="$md">
+      <Text color="$gray100" fontSize="$md">
         08:01
       </Text>
     </HStack>

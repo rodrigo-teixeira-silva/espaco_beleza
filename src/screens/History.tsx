@@ -21,7 +21,7 @@ export function History() {
 
   return (
     <VStack flex={1} backgroundColor="#121214">
-      <StatusBar style="light" backgroundColor="#202024" />
+      <StatusBar style="light" backgroundColor="#121214" />
       <ScreenHeader title="Histórico de agendamentos" />
 
       <SectionList

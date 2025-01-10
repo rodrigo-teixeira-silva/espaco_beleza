@@ -7,7 +7,7 @@ import { VStack, Center, Heading, HStack, Text } from "@gluestack-ui/themed";
 import { HomeHeader } from "@components/HomeHeader";
 import { ProductCard } from "@components/ProductCards";
 import { Group } from "@components/Groups";
-import { AppTabNavigationProps } from "@routes/AppTabs";
+import { appNavigatorRoutesProps } from "@routes/app.routes";
 import { Carrousel } from "@components/Carrousel";
 import { Input } from "@components/Input";
 
@@ -20,20 +20,21 @@ export function Home() {
     "Produto 1",
     "Produto 2",
     "Produto 3",
+    "Produto 4",
   ]);
 
   const [group, setGroup] = useState([
     "Produtos",
     "Serviços",
     "Treinamentos",
-    "Parceiros ",
+    "Parceiros",
   ]);
 
   const [groupSelected, setGroupSelected] = useState<string | undefined>(
     undefined
   );
 
-  const navigation = useNavigation<AppTabNavigationProps>();
+  const navigation = useNavigation<appNavigatorRoutesProps>();
 
   const carouselImages = [
     require("@assets/face1.png"),
@@ -45,30 +46,33 @@ export function Home() {
     navigation.navigate("product", { product });
   }
 
-  return (
-    <>
-      <StatusBar style="light" backgroundColor="#202024" />
-      <VStack flex={1} backgroundColor="#121214">
-        <VStack style={styles.headerContainer}>
-          <HomeHeader />
-        </VStack>
+  const renderContent = ({ item }: { item: any }) => {
+    if (item.type === "header") {
+      return <HomeHeader />;
+    }
 
+    if (item.type === "search") {
+      return (
         <Center w="$full" gap="$4" style={{ marginTop: 16 }}>
           <Input placeholder="Buscar..." bg="$gray400" />
         </Center>
+      );
+    }
 
-        <Carrousel images={carouselImages} />
+    if (item.type === "carousel") {
+      return <Carrousel images={carouselImages} />;
+    }
 
+    if (item.type === "group") {
+      return (
         <FlatList
           data={group}
-          keyExtractor={(item) => item}
-          renderItem={({ item }) => (
+          keyExtractor={(groupItem) => groupItem}
+          renderItem={({ item: groupItem }) => (
             <Group
-              name={item}
-              isActive={
-                groupSelected?.toUpperCase() === item.toLocaleLowerCase()
-              }
-              onPress={() => setGroupSelected(item)}
+              name={groupItem}
+              isActive={groupSelected === groupItem}
+              onPress={() => setGroupSelected(groupItem)}
             />
           )}
           horizontal
@@ -76,9 +80,12 @@ export function Home() {
           contentContainerStyle={{ paddingHorizontal: 2 }}
           style={{ margin: 16, maxHeight: 44, minHeight: 44 }}
         />
+      );
+    }
 
-        {/* Products */}
-        <VStack px="$8" flex={1}>
+    if (item.type === "products") {
+      return (
+        <VStack px="$8">
           <HStack justifyContent="space-between" mb="$5" alignItems="center">
             <Heading color="#FFFFFF" fontSize="$sm" fontFamily="$heading">
               Aulas
@@ -91,17 +98,43 @@ export function Home() {
 
           <FlatList
             data={produtos}
-            keyExtractor={(item) => item}
-            renderItem={({ item }) => (
+            keyExtractor={(product) => product}
+            renderItem={({ item: product }) => (
               <ProductCard
-                onPress={() => handleOpenProcedimentsDetails(item)}
+                onPress={() => handleOpenProcedimentsDetails(product)}
               />
             )}
+            numColumns={2}
+            columnWrapperStyle={{ justifyContent: "space-between" }}
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 20 }}
             ItemSeparatorComponent={() => <VStack height={12} />}
           />
         </VStack>
+      );
+    }
+
+    return null;
+  };
+
+  const content = [
+    { type: "header" },
+    { type: "search" },
+    { type: "carousel" },
+    { type: "group" },
+    { type: "products" }, 
+  ];
+
+  return (
+    <>
+      <StatusBar style="light" backgroundColor="#202024" />
+        <VStack flex={1} backgroundColor="#121214">
+        <FlatList
+          data={content}
+          keyExtractor={(item) => item.type}
+          renderItem={renderContent}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 20 }}
+        />
       </VStack>
     </>
   );
