@@ -1,16 +1,23 @@
-import { useState } from "react";
-import { FlatList } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
+import { HStack, VStack, Text, Icon, Heading } from "@gluestack-ui/themed";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Heading, HStack, Text, VStack, Icon } from "@gluestack-ui/themed";
-import { LogOut } from "lucide-react-native";
 import { UserPhoto } from "./UserPhoto";
-import { ProductCard } from "@components/ProductCards";
-import { Group } from "@components/Groups";
+import { LogOut, Menu } from "lucide-react-native";
+import { TouchableOpacity } from "react-native";
+
+
+type DrawerRoutes = {
+  Home: undefined;
+  Profile: undefined;
+  History: undefined;
+};
 
 export function HomeHeader() {
+  const navigation = useNavigation<DrawerNavigationProp<DrawerRoutes>>();
+
   return (
-    
-      <SafeAreaView style={{ backgroundColor: "#202024" }}>
+    <SafeAreaView style={{ backgroundColor: "#202024" }}>
       <HStack
         pt="$5"
         pb="$5"
@@ -19,6 +26,8 @@ export function HomeHeader() {
         gap="$4"
         w="100%"
       >
+      
+
         <UserPhoto
           source={{ uri: "https://github.com/rodrigo-teixeira-silva.png" }}
           w="$16"
@@ -36,9 +45,10 @@ export function HomeHeader() {
           </Heading>
         </VStack>
 
-        <Icon as={LogOut} color="$gray100" size="xl" />
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <Icon as={Menu} color="$gray100" size="xl" />
+        </TouchableOpacity>
       </HStack>
     </SafeAreaView>
   );
 }
-

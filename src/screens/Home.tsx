@@ -21,6 +21,7 @@ export function Home() {
     "Produto 2",
     "Produto 3",
     "Produto 4",
+    "Produto 5",
   ]);
 
   const [group, setGroup] = useState([
@@ -91,7 +92,7 @@ export function Home() {
               Aulas
             </Heading>
 
-            <Text color="#000e21" fontSize="$sm" fontFamily="$body">
+            <Text color="#FFFFFF" fontSize="$sm" fontFamily="$body">
               {produtos.length}
             </Text>
           </HStack>
