@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-
 import { StatusBar } from "expo-status-bar";
-import { VStack, Center, Heading, HStack, Text } from "@gluestack-ui/themed";
+import { VStack, Center, Heading, HStack, Text, Pressable } from "@gluestack-ui/themed";
 import { HomeHeader } from "@components/HomeHeader";
 import { ProductCard } from "@components/ProductCards";
 import { Group } from "@components/Groups";
 import { appNavigatorRoutesProps } from "@routes/app.routes";
 import { Carrousel } from "@components/Carrousel";
 import { Input } from "@components/Input";
+import WatsappSvg from "@assets/whatsapp.svg";
 
 export function Home() {
   const [produtos, setProdutos] = useState([
@@ -45,6 +45,11 @@ export function Home() {
 
   function handleOpenProcedimentsDetails(product: string) {
     navigation.navigate("product", { product });
+  }
+
+  function handleWhatsAppPress() {
+    console.log("WhatsApp button pressed!");
+    // Lógica para abrir o WhatsApp ou redirecionar
   }
 
   const renderContent = ({ item }: { item: any }) => {
@@ -114,6 +119,22 @@ export function Home() {
       );
     }
 
+    if (item.type === "whatsappButton") {
+      return (
+        <HStack mt="$8" justifyContent="flex-end" px="$3" alignItems="center">
+          <Pressable
+            onPress={handleWhatsAppPress}
+            bg="$violet500"
+            rounded="$full"
+            p="$4"
+            elevation={5}
+          >
+            <WatsappSvg width={50} height={50} />
+          </Pressable>
+        </HStack>
+      );
+    }
+
     return null;
   };
 
@@ -122,13 +143,14 @@ export function Home() {
     { type: "search" },
     { type: "carousel" },
     { type: "group" },
-    { type: "products" }, 
+    { type: "products" },
+    { type: "whatsappButton" },
   ];
 
   return (
     <>
       <StatusBar style="light" backgroundColor="#202024" />
-        <VStack flex={1} backgroundColor="#121214">
+      <VStack flex={1} backgroundColor="#121214">
         <FlatList
           data={content}
           keyExtractor={(item) => item.type}
@@ -140,10 +162,3 @@ export function Home() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  headerContainer: {
-    borderBottomWidth: 1,
-    borderBottomColor: "#000",
-  },
-});

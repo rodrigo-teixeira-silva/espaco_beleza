@@ -1,7 +1,4 @@
-import {
-  createBottomTabNavigator,
-  BottomTabNavigationProp,
-} from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator, BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import { Platform } from "react-native";
@@ -13,6 +10,7 @@ import HistorySvg from "@assets/history.svg";
 import ProfileSvg from "@assets/profile.svg";
 import Bag123Svg from "@assets/bag123.svg";
 import Wallet1Svg from "@assets/wallet1.svg";
+import ShoppingSvg from "@assets/shopping.svg"
 
 import { Home } from "@screens/Home";
 import { Profile } from "@screens/Profile";
@@ -30,6 +28,7 @@ type AppRoutes = {
   cart: undefined;
   pay: undefined;
   wallet: undefined;
+  shoppingSvg: undefined;
 };
 
 export type appNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
@@ -95,6 +94,7 @@ function BottomTabs() {
           tabBarIcon: ({ color }) => (
             <ProfileSvg fill={color} width={iconSize} height={iconSize} />
           ),
+          tabBarLabel:"Perfil"
         }}
       />
 
@@ -114,7 +114,8 @@ function BottomTabs() {
         component={Cart}
         options={{
           tabBarIcon: ({ color }) => (
-            <Bag123Svg fill={color} width={iconSize} height={iconSize} />
+            // <Bag123Svg fill={color} width={iconSize} height={iconSize} />
+            <ShoppingSvg fill={color} width={iconSize} height={iconSize}/>
           ),
         }}
       />
@@ -136,14 +137,12 @@ function BottomTabs() {
 export function AppRoutes() {
   return (
     <Drawer.Navigator
-     
       screenOptions={{
         headerShown: false,
         drawerStyle: { backgroundColor: "#202024" },
         drawerActiveTintColor: "#912dee",
         drawerInactiveTintColor: "#bd85f6",
-        drawerPosition:"right"
-        
+        drawerPosition: "right",
       }}
     >
       <Drawer.Screen name="Inicio" component={BottomTabs} />
