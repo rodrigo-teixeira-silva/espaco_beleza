@@ -7,7 +7,7 @@ export function HistoryCard() {
       px="$5"
       py="$4"
       mb="$3"
-      bg="$blue500"
+      bg="$violet500"
       rounded="$md"
       alignItems="center"
       justifyContent="space-between"

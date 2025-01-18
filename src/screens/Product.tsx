@@ -18,6 +18,7 @@ import { ArrowLeft } from "lucide-react-native";
 import BodySvg from "@assets/body.svg";
 import RepetitionSvg from "@assets/repetitions.svg";
 import { Button } from "@components/Button";
+import { TouchableOpacity } from "react-native";
 
 export function Product() {
   const navigation = useNavigation<appNavigatorRoutesProps>();
@@ -85,7 +86,7 @@ export function Product() {
             w="$full"
             h="$80"
           />
-          <Box bg="$gray200" rounded="$sm" pb="$4" px="$4">
+          <Box bg="#202024" rounded="$sm" pb="$4" px="$4">
             <View>
               <Text
                 color="#FFF"
@@ -102,7 +103,7 @@ export function Product() {
             </View>
           </Box>
 
-          <Box bg="$gray200" rounded="$md" mt="$2" pb="$10" px="$4">
+          <Box bg="#202024" rounded="$md" mt="$2" pb="$10" px="$4">
             <HStack
               alignItems="center"
               justifyContent="space-around"
@@ -124,9 +125,11 @@ export function Product() {
               </HStack>
             </HStack>
 
-            <Button title="Adicionar ao carrinho" mb="$4" />
+            <Button title="Adicionar ao carrinho" mt="$10" mb="$4" 
+            onPress={(()=> navigation.navigate("cart"))}/>
 
-            <Button title="Comprar agora" />
+            <Button title="Comprar agora" 
+            onPress={(()=> navigation.navigate("pay"))}/>
           </Box>
         </VStack>
       </ScrollView>

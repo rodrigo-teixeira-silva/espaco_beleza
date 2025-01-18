@@ -17,7 +17,7 @@ export function Group({ name, isActive, ...rest }: Props) {
       justifyContent="center"
       alignItems="center"
       borderWidth={isActive ? 1 : 0}
-      borderColor={isActive ? "$violet600" : "transparent"} // Cor violeta para borda ativa
+      borderColor={isActive ? "$violet600" : "transparent"} 
       sx={{
         ":active": {
           borderColor: "$violet600", 
