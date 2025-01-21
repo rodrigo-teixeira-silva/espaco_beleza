@@ -24,29 +24,30 @@ export function Input({
   return (
     <FormControl isInvalid={invalid} mb="$4" w="$full">
       <GlueStackInput
-          isInvalid={isInvalid}
-         h="$14"
+        isInvalid={isInvalid}
+        h="$14"
         borderWidth="$0"
         borderRadius="$full"
         $focus={{
           borderWidth: 1,
           // borderColor: "$violet700",
 
- borderColor: invalid ? '$red500' : '$violet700',
+          borderColor: invalid ? "$red500" : "$amber100",
         }}
         $invalid={{
           borderWidth: 1,
-          borderColor: '$red500',
+          borderColor: "$red500",
         }}
         isReadOnly={isReadOnly}
         opacity={isReadOnly ? 0.5 : 1}
       >
         <InputField
-          bg="$gray100"
+          bg="$amber100"
           px="$4"
           color="$gray700"
           fontFamily="$body"
-          placeholderTextColor="$violet500"
+          placeholderTextColor="#000000"
+        
           {...rest}
         />
       </GlueStackInput>

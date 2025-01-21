@@ -12,14 +12,14 @@ export function Button ({title, isLoading = false, ...rest}: Props) {
     <GluestackButton
     w="$full"
     h="$14"
-    bg="$violet600"
+    bg="#ffffc1"
     borderWidth={"$0"}
-    borderColor="$violet700"
+    borderColor="#ffffc1"
     rounded="$full"
-    $active-bg="$violet500"
+    $active-bg="#b9b950"
     {...rest}
     >
-      <Text style={{color: "#FFF"}}>
+      <Text style={{color: "#000", fontWeight: "bold" }}>
         {title}
       </Text>
     </GluestackButton>

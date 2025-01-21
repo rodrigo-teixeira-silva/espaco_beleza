@@ -18,9 +18,11 @@ import * as yup from "yup";
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 import Icon from "react-native-vector-icons/FontAwesome";
+import GoogleIcon from "@assets/google-icon.png";
+
 
 import Logo from "@assets/logo.svg";
-import loreBackground from "@assets/loreBackground.png";
+import gold from "@assets/gold.png";
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
 type FormDataProps = {
@@ -48,7 +50,6 @@ export function Signin() {
 
   function handleSignIn({ email, password }: FormDataProps) {
     console.log("Login realizado:", { email, password });
-    // Aqui você pode implementar a lógica de autenticação, como chamada para API
   }
 
   function handleNewAccount() {
@@ -75,8 +76,8 @@ export function Signin() {
           <Image
             w="$full"
             h={924}
-            source={loreBackground}
-            defaultSource={loreBackground}
+            source={gold}
+            defaultSource={gold}
             alt="estetica e beleza"
             position="absolute"
           />
@@ -84,17 +85,15 @@ export function Signin() {
           <VStack flex={1} px="$10" pb="$16">
             <Center my="$24">
               <Logo width={70} height={70} />
-              <Text fontSize="$2xl" fontWeight="bold">
-                LORENA
+              <Text color="#000000" fontSize="$2xl" fontWeight="bold">
+                LORE
               </Text>
 
-              <Text color="#7C7C8A" fontSize="$2xl" mt="$2">
-                Espaço estética
-              </Text>
+            
             </Center>
 
             <Center gap="$2" flex={1}>
-              <Heading color="$gray400">Acesse sua conta</Heading>
+              <Heading color="#000000">Acesse sua conta</Heading>
 
               {/* Campo de E-mail */}
               <Controller
@@ -131,19 +130,19 @@ export function Signin() {
 
               <Button title="Acessar" onPress={handleSubmit(handleSignIn)} />
 
-              {/* Linha com "ou" */}
               <HStack
                 alignItems="center"
                 justifyContent="center"
                 mt="$4"
                 mb="$2"
               >
-                <Divider flex={1} bg="#7C7C8A" />
-                <Text color="#7C7C8A" mx="$2" fontWeight="bold">
+                <Divider flex={1} bg="#000000" />
+                <Text color="#000000" mx="$2" fontWeight="bold">
                   ou
                 </Text>
-                <Divider flex={1} bg="#7C7C8A" />
+                <Divider flex={1} bg="#000000" />
               </HStack>
+
 
               {/* Botões de login social */}
               <HStack
@@ -153,11 +152,11 @@ export function Signin() {
                 mt="$4"
               >
                 <Pressable onPress={() => console.log("Login com Google")}>
-                  <Icon name="google" size={30} color="#FFFFFF" />
+                  <Icon name="google" size={30} color="##000000" />
                 </Pressable>
 
                 <Pressable onPress={() => console.log("Login com Facebook")}>
-                  <Icon name="facebook" size={30} color="#FFFFFF" />
+                  <Icon name="facebook" size={30} color="##000000" />
                 </Pressable>
               </HStack>
             </Center>
@@ -165,14 +164,14 @@ export function Signin() {
             {/* Navegar para recuperar senha ou criar nova conta */}
             <Center justifyContent="flex-end" mt="$6">
               <Pressable onPress={handleRecoverPassword}>
-                <Text color="#7C7C8A" fontSize="$sm" fontWeight="bold">
+                <Text color="#000000" fontSize="$sm" fontWeight="bold">
                   Esqueceu sua senha? Clique aqui
                 </Text>
               </Pressable>
 
               <Pressable onPress={handleNewAccount}>
                 <Text
-                  color={isClicked ? "$violet500" : "#7C7C8A"}
+                  color={isClicked ? "$violet500" : "##000000"}
                   fontSize="$sm"
                   fontWeight="bold"
                   mt="$4"

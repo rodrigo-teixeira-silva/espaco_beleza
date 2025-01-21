@@ -7,11 +7,12 @@ import {
   Text,
   Heading,
   onChange,
+  useToast,
 } from "@gluestack-ui/themed";
 import { useNavigation } from "@react-navigation/native";
 import BackagroundImg from "@assets/mainBackground.png";
 import { StatusBar } from "react-native";
-import loreBackground from "@assets/loreBackground.png";
+import gold from "@assets/gold.png";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -26,6 +27,8 @@ import {
   ScrollView,
   View as RNView,
 } from "react-native";
+import { api } from "../service/api";
+import { AppError } from "@utils/AppError";
 
 type FormDataProps = {
   name: string;
@@ -48,6 +51,7 @@ const signUpSchema = yup.object({
 });
 
 export function SignUp() {
+  const toast = useToast();
   const {
     control,
     handleSubmit,
@@ -67,13 +71,22 @@ export function SignUp() {
     StatusBar.setTranslucent(true);
   }, []);
 
-  function handleSignUp({
-    name,
-    email,
-    password,
-    password_confirm,
-  }: FormDataProps) {
-    console.log({ name, email, password, password_confirm });
+  async function handleSignUp({ name, email, password }: FormDataProps) {
+    try {
+      const response = await api.post('/users', { name, email, password });
+      console.log(response.data);
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+      const title = isAppError
+        ? error.message
+        : 'Não foi possível criar a conta. Tente novamente mais tarde.';
+
+      // toast.show({
+      //   title,
+      //   placement: 'top',
+      //   bgColor: 'red.500',
+      // });
+    }
   }
 
   return (
@@ -86,22 +99,22 @@ export function SignUp() {
           <Image
             w="$full"
             h={924}
-            source={loreBackground}
-            defaultSource={loreBackground}
+            source={gold}
+            defaultSource={gold}
             alt="estetica e beleza"
             position="absolute"
           />
 
-          <VStack flex={1} px="$10" pb="$16">
-            <Center my="$24">
-              <Logo width={70} height={70} />
-              <Text fontSize="$2xl" fontWeight="bold">
-                LORENA
+          <VStack flex={1} px="$10" pb="$8">
+            <Center my="$14">
+              <Logo width={90} height={90} />
+              <Text fontSize="$2xl" fontWeight="bold" color="#000000">
+                LORE
               </Text>
             </Center>
 
             <Center gap="$0" flex={1}>
-              <Heading color="$gray400">Crie sua conta</Heading>
+              <Heading color="#000000" mb="$4">Crie sua conta</Heading>
 
               <Controller
                 control={control}
@@ -178,7 +191,7 @@ export function SignUp() {
               />
             </Center>
 
-            <Center justifyContent="flex-end" mt="$6">
+            <Center justifyContent="flex-end" mt="$2">
               <Button
                 title="Voltar para login"
                 variant="outline"

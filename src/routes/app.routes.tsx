@@ -1,4 +1,7 @@
-import { createBottomTabNavigator, BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
+import {
+  createBottomTabNavigator,
+  BottomTabNavigationProp,
+} from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import { Platform } from "react-native";
@@ -10,7 +13,7 @@ import HistorySvg from "@assets/history.svg";
 import ProfileSvg from "@assets/profile.svg";
 import Bag123Svg from "@assets/bag123.svg";
 import Wallet1Svg from "@assets/wallet1.svg";
-import ShoppingSvg from "@assets/shopping.svg"
+import ShoppingSvg from "@assets/shopping.svg";
 
 import { Home } from "@screens/Home";
 import { Profile } from "@screens/Profile";
@@ -29,6 +32,7 @@ type AppRoutes = {
   pay: undefined;
   wallet: undefined;
   shoppingSvg: undefined;
+
 };
 
 export type appNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
@@ -94,7 +98,7 @@ function BottomTabs() {
           tabBarIcon: ({ color }) => (
             <ProfileSvg fill={color} width={iconSize} height={iconSize} />
           ),
-          tabBarLabel:"Perfil"
+          tabBarLabel: "Perfil",
         }}
       />
 
@@ -115,7 +119,7 @@ function BottomTabs() {
         options={{
           tabBarIcon: ({ color }) => (
             // <Bag123Svg fill={color} width={iconSize} height={iconSize} />
-            <ShoppingSvg fill={color} width={iconSize} height={iconSize}/>
+            <ShoppingSvg fill={color} width={iconSize} height={iconSize} />
           ),
         }}
       />

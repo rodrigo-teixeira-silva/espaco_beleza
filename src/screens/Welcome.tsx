@@ -17,7 +17,7 @@ import { StatusBar } from "react-native";
 
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
-import background from "@assets/background.png"
+import gold from "@assets/gold.png"
 
 import { useState } from "react";
 import Logo from "@assets/logo.svg";
@@ -59,8 +59,8 @@ export function Welcome() {
       
         w="$full"
         h={960}
-        source={background}
-        defaultSource={background}
+        source={gold}
+        defaultSource={gold}
         alt="estetica e beleza"
         position="absolute"
       />
@@ -69,22 +69,25 @@ export function Welcome() {
         data={[1]}
         renderItem={() => (
           <VStack flex={1} px="$10" pb="$16" mt="$1/5">
-            <Center my="$24" >
-              <Logo width={70} height={70} />
+            <Center my="$14" >
+              <Logo width={100} height={100} />
 
-              <Text fontSize="$2xl" fontWeight="bold" color="#000000">
-                LORENA
+              <Text fontSize="$3xl" fontWeight="bold" color="#000000">
+                LORE
               </Text>
 
               <Text color="#000000" fontSize="$2xl" mt="$2">
-                Espaço estética
+                
               </Text>
             </Center>
 
             <Center gap="$2">
               <Heading color="#000000" >Bem vindo</Heading >
 
-              <Button title="Login" onPress={handleSignin} />
+              <Button title="Login" onPress={handleSignin}
+              backgroundColor="#ffffc1"
+              
+              />
 
               <Button title="Criar conta" onPress={handleNewAccount} />
 
@@ -93,7 +96,7 @@ export function Welcome() {
 
             <Center mt="$5">
               <View>
-                <Text color="#7C7C8A">Siga nas redes sociais</Text>
+                <Text color="#000000" fontSize="$lg">Siga nas redes sociais</Text>
               </View>
 
               <HStack
