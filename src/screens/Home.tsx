@@ -1,15 +1,23 @@
-import React, { useState } from "react";
-import { FlatList } from "react-native";
+import React, { useState, useEffect } from "react";
+import { FlatList, StatusBar  } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { StatusBar } from "expo-status-bar";
-import { VStack, Center, Heading, HStack, Text, Pressable } from "@gluestack-ui/themed";
+import {
+  VStack,
+  Center,
+  Heading,
+  HStack,
+  Text,
+  Pressable,
+  Image,
+} from "@gluestack-ui/themed";
 import { HomeHeader } from "@components/HomeHeader";
 import { ProductCard } from "@components/ProductCards";
 import { Group } from "@components/Groups";
 import { appNavigatorRoutesProps } from "@routes/app.routes";
 import { Carrousel } from "@components/Carrousel";
 import { Input } from "@components/Input";
-import WatsappSvg from "@assets/whatsapp.svg";
+import {WhatsAppButton} from "@components/WhatzAppButoon";
+import gold from "@assets/gold.png";
 
 export function Home() {
   const [produtos, setProdutos] = useState([
@@ -37,6 +45,12 @@ export function Home() {
 
   const navigation = useNavigation<appNavigatorRoutesProps>();
 
+  useEffect(() => {
+    StatusBar.setBarStyle("dark-content");
+    StatusBar.setBackgroundColor("transparent");
+    StatusBar.setTranslucent(true);
+  }, []);
+
   const carouselImages = [
     require("@assets/face1.png"),
     require("@assets/face2.png"),
@@ -60,7 +74,7 @@ export function Home() {
     if (item.type === "search") {
       return (
         <Center w="$full" gap="$4" style={{ marginTop: 16 }}>
-          <Input placeholder="Buscar..." bg="$gray400" />
+          <Input placeholder="Buscar..." bg="#ffffc1" />
         </Center>
       );
     }
@@ -71,6 +85,8 @@ export function Home() {
 
     if (item.type === "group") {
       return (
+
+        
         <FlatList
           data={group}
           keyExtractor={(groupItem) => groupItem}
@@ -93,11 +109,11 @@ export function Home() {
       return (
         <VStack px="$8">
           <HStack justifyContent="space-between" mb="$5" alignItems="center">
-            <Heading color="#FFFFFF" fontSize="$sm" fontFamily="$heading">
+            <Heading color="#000000" fontSize="$sm" fontFamily="$heading">
               Aulas
             </Heading>
 
-            <Text color="#FFFFFF" fontSize="$sm" fontFamily="$body">
+            <Text color="#000000" fontSize="$sm" fontFamily="$body">
               {produtos.length}
             </Text>
           </HStack>
@@ -119,22 +135,12 @@ export function Home() {
       );
     }
 
-    if (item.type === "whatsappButton") {
-      return (
-        <HStack mt="$8" justifyContent="flex-end" px="$3" alignItems="center">
-          <Pressable
-            onPress={handleWhatsAppPress}
-            bg="$violet500"
-            rounded="$full"
-            p="$4"
-            elevation={5}
-          >
-            <WatsappSvg width={50} height={50} />
-          </Pressable>
-        </HStack>
-      );
-    }
+    
 
+    if (item.type === "whatsappButton") {
+      return <WhatsAppButton item={item} />;
+    }
+  
     return null;
   };
 
@@ -147,10 +153,24 @@ export function Home() {
     { type: "whatsappButton" },
   ];
 
+  useEffect(() => {
+    StatusBar.setBarStyle("dark-content");
+    StatusBar.setBackgroundColor("transparent");
+    StatusBar.setTranslucent(true);
+  }, []);
+
   return (
     <>
-      <StatusBar style="light" backgroundColor="#202024" />
       <VStack flex={1} backgroundColor="#121214">
+        <Image
+          source={gold}
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+          }}
+          alt="Gold background"
+        />
         <FlatList
           data={content}
           keyExtractor={(item) => item.type}

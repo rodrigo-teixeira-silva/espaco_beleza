@@ -7,14 +7,14 @@ export function HistoryCard() {
       px="$5"
       py="$4"
       mb="$3"
-      bg="$violet500"
+      bg="#ffffc1"
       rounded="$md"
       alignItems="center"
       justifyContent="space-between"
     >
       <VStack mr="$5" flex={1}>
         <Heading
-          color="$white"
+          color="$gray500"
           fontSize="$md"
           textTransform="capitalize"
           fontFamily="$heading"
@@ -23,11 +23,11 @@ export function HistoryCard() {
           Limpeza de pele 
         </Heading>
 
-        <Text color="$gray100" fontSize="$lg" numberOfLines={1}>
+        <Text color="$gray500" fontSize="$lg" numberOfLines={1}>
           tipos de pele
         </Text>
       </VStack>
-      <Text color="$gray100" fontSize="$md">
+      <Text color="$gray500" fontSize="$md">
         08:01
       </Text>
     </HStack>

@@ -7,7 +7,7 @@ export function UserPhoto({ ...rest }: Props) {
   return <Image 
     rounded='$full' 
     borderWidth='$2' 
-    borderColor="$violet700" 
+    borderColor="#ffffc1" 
     backgroundColor='$gray500' 
     { ...rest } />;
 }

@@ -9,7 +9,7 @@ export function ProductCard({ ...rest }: Props) {
 
       <TouchableOpacity {...rest}>
       <VStack
-        bg="$gray400"
+        bg="#ffffc1"
         alignItems="center"
         p="$4"
         rounded="$md"
@@ -32,10 +32,10 @@ export function ProductCard({ ...rest }: Props) {
         />
 
         <VStack alignItems="center">
-          <Heading fontSize="$lg" color="$gray100" fontFamily="$heading" textAlign="center">
+          <Heading fontSize="$lg" color="$gray500" fontFamily="$heading" textAlign="center">
             Limpeza de pele
           </Heading>
-          <Text color="$gray100" textAlign="center">
+          <Text color="$gray500" textAlign="center">
             tipos de pele
           </Text>
         </VStack>

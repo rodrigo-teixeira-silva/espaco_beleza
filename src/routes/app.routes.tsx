@@ -22,6 +22,7 @@ import { Product } from "@screens/Product";
 import { Cart } from "@screens/Cart";
 import { Pay } from "@screens/Pay";
 import { Wallet } from "@screens/wallet";
+import { PaymentWallet } from "@screens/PaymentWallet";
 
 type AppRoutes = {
   home: undefined;
@@ -49,10 +50,10 @@ function BottomTabs() {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: true,
-        tabBarActiveTintColor: tokens.colors.violet500,
-        tabBarInactiveTintColor: tokens.colors.violet300,
+        tabBarActiveTintColor: tokens.colors.yellow500,
+        tabBarInactiveTintColor: tokens.colors.yellow100,
         tabBarStyle: {
-          backgroundColor: tokens.colors.gray400,
+          backgroundColor: tokens.colors.gray900,
           borderTopWidth: 0,
           height: Platform.OS === "android" ? "auto" : 96,
           paddingBottom: tokens.space["12"],
@@ -83,7 +84,7 @@ function BottomTabs() {
 
       <Tab.Screen
         name="wallet"
-        component={Wallet}
+        component={PaymentWallet}
         options={{
           tabBarIcon: ({ color }) => (
             <Wallet1Svg fill={color} width={iconSize} height={iconSize} />
@@ -143,9 +144,9 @@ export function AppRoutes() {
     <Drawer.Navigator
       screenOptions={{
         headerShown: false,
-        drawerStyle: { backgroundColor: "#202024" },
-        drawerActiveTintColor: "#912dee",
-        drawerInactiveTintColor: "#bd85f6",
+        drawerStyle: { backgroundColor: "#ffffc1" },
+        drawerActiveTintColor: "#b9b950",
+        drawerInactiveTintColor: "$gray200",
         drawerPosition: "right",
       }}
     >

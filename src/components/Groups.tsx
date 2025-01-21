@@ -12,21 +12,21 @@ export function Group({ name, isActive, ...rest }: Props) {
       mr="$3"
       minWidth="$24"
       h="$10"
-      bg="$gray400"
+      bg="#ffffc1"
       rounded="$md"
       justifyContent="center"
       alignItems="center"
       borderWidth={isActive ? 1 : 0}
-      borderColor={isActive ? "$violet600" : "transparent"} 
+      borderColor={isActive ? "#000000" : "transparent"} 
       sx={{
         ":active": {
-          borderColor: "$violet600", 
+          borderColor: "#b9b950", 
         },
       }}
       {...rest}
     >
       <Text
-        color={isActive ? "$violet600" : "$gray100"}
+        color={isActive ? "#b9b950" : "$gray300"}
         textTransform="uppercase"
         fontSize="$xs"
         fontFamily="$heading"

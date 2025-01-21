@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ScrollView, TouchableOpacity, Alert } from "react-native";
+import { ScrollView, TouchableOpacity, Alert, ImageBackground } from "react-native";
 import { ScreenHeader } from "@components/ScreenHeader";
 import * as ImagePicker from "expo-image-picker";
 
@@ -11,6 +11,8 @@ import { VStack, Text, Heading, Center, useToast } from "@gluestack-ui/themed";
 import { StatusBar } from "expo-status-bar";
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
+
+import gold from "@assets/gold.png"; // Imagem de fundo
 
 export function Profile() {
   const [userPhoto, setUserPhoto] = useState(
@@ -60,53 +62,59 @@ export function Profile() {
   }
 
   return (
-    <VStack flex={1} backgroundColor="#121214">
-      <StatusBar style="light" backgroundColor="#202024" />
+    <ImageBackground
+      source={gold}
+      style={{ flex: 1 }}
+      resizeMode="cover"
+    >
+      <VStack flex={1}> {/* Garantir que o VStack ocupe toda a altura */}
+        <StatusBar style="dark" backgroundColor="transparent" translucent />
 
-      <ScrollView
-        contentContainerStyle={{
-          paddingVertical: 16,
-          paddingHorizontal: 30,
-        }}
-      >
-        <Center mt="$6" px="$10">
-          <UserPhoto
-            source={{ uri: userPhoto }}
-            alt="Foto de usuário"
-            size="xl"
-          />
-
-          <TouchableOpacity onPress={handleUserPhotoSelect}>
-            <Text color="$violet500" fontFamily="$heading" mt="$2" mb="$8">
-              Alterar foto
-            </Text>
-          </TouchableOpacity>
-        </Center>
-
-        <Center w="$full" gap="$4">
-          <Input placeholder="Nome" bg="$gray500" />
-
-          <Input value="rodrigo@gmail.com" bg="$gray100" isReadOnly />
-        </Center>
-
-        <Heading
-          alignSelf="flex-start"
-          fontFamily="$heading"
-          color="$violet500"
-          fontSize="$md"
-          mt="$12"
-          mb="$2"
+        <ScrollView
+          contentContainerStyle={{
+            paddingVertical: 16,
+            paddingHorizontal: 30,
+            flexGrow: 1, // Garante que o ScrollView preencha o espaço disponível
+          }}
         >
-          Alterar Senha
-        </Heading>
+          <Center mt="$6" px="$10">
+            <UserPhoto
+              source={{ uri: userPhoto }}
+              alt="Foto de usuário"
+              size="xl"
+            />
 
-        <Center w="$full" gap="$4">
-          <Input placeholder="Senha antiga" bg="$gray500" secureTextEntry />
-          <Input placeholder="Nova senha" bg="$gray500" secureTextEntry />
-          <Input placeholder="Confirme a senha" bg="$gray500" secureTextEntry />
-          <Button title="Atualizar" mb="$4" />
-        </Center>
-      </ScrollView>
-    </VStack>
+            <TouchableOpacity onPress={handleUserPhotoSelect}>
+              <Text color="$gray500" fontFamily="$heading" mt="$2" mb="$8">
+                Alterar foto
+              </Text>
+            </TouchableOpacity>
+          </Center>
+
+          <Center w="$full" gap="$4">
+            <Input placeholder="Nome" />
+            <Input value="rodrigo@gmail.com" isReadOnly />
+          </Center>
+
+          <Heading
+            alignSelf="flex-start"
+            fontFamily="$heading"
+            color="#000000"
+            fontSize="$md"
+            mt="$12"
+            mb="$2"
+          >
+            Alterar Senha
+          </Heading>
+
+          <Center w="$full" gap="$4">
+            <Input placeholder="Senha antiga" secureTextEntry />
+            <Input placeholder="Nova senha" secureTextEntry />
+            <Input placeholder="Confirme a senha" secureTextEntry />
+            <Button title="Atualizar" mb="$4" />
+          </Center>
+        </ScrollView>
+      </VStack>
+    </ImageBackground>
   );
 }
