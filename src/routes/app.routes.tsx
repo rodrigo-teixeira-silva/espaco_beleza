@@ -23,6 +23,7 @@ import { Cart } from "@screens/Cart";
 import { Pay } from "@screens/Pay";
 import { Wallet } from "@screens/wallet";
 import { PaymentWallet } from "@screens/PaymentWallet";
+import gold from "@assets/gold.png";
 
 type AppRoutes = {
   home: undefined;
@@ -33,7 +34,6 @@ type AppRoutes = {
   pay: undefined;
   wallet: undefined;
   shoppingSvg: undefined;
-
 };
 
 export type appNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
@@ -43,7 +43,7 @@ const Drawer = createDrawerNavigator();
 
 function BottomTabs() {
   const { tokens } = gluestackUIConfig;
-  const iconSize = tokens.space["6"];
+  const iconSize = tokens.space["5"];
 
   return (
     <Tab.Navigator
@@ -57,7 +57,7 @@ function BottomTabs() {
           borderTopWidth: 0,
           height: Platform.OS === "android" ? "auto" : 96,
           paddingBottom: tokens.space["12"],
-          paddingTop: tokens.space["6"],
+          paddingTop: tokens.space["4"],
         },
       }}
     >
