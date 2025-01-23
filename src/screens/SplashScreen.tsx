@@ -97,7 +97,7 @@ export function SplashScreen() {
               top: 180, // Posiciona o texto abaixo do logo com um pequeno espaçamento
             }}
           >
-            <Text color="#00000" fontSize="$3xl" fontWeight="bold">
+            <Text color="#00000" fontSize="$3xl" fontWeight="bold" >
               LORE
             </Text>
           </Animated.View>

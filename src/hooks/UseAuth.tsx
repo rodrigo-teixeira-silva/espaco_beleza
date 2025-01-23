@@ -1,12 +1,3 @@
-// import { useContext } from "react";
-
-// import { AuthContext } from "@contexts/authcontext";
- 
-// export function useAuth(){
-//   const context = useContext(AuthContext);
-
-//   return context;
-// }
 import React, { createContext, useContext, useState } from "react";
 
 type User = {

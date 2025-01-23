@@ -1,34 +1,24 @@
 import { useEffect } from "react";
-import { useState } from "react";
 import {
   VStack,
-  Image,
   Center,
   Text,
   Heading,
-  onChange,
   useToast,
 } from "@gluestack-ui/themed";
 import { useNavigation } from "@react-navigation/native";
-import BackagroundImg from "@assets/mainBackground.png";
-import { StatusBar } from "react-native";
-import gold from "@assets/gold.png";
+import { StatusBar, ImageBackground, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { useForm, Controller } from "react-hook-form";
 
 import Logo from "@assets/logo.svg";
+import gold from "@assets/gold.png"; // Importando a imagem de fundo
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
-import {
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  View as RNView,
-} from "react-native";
 import { api } from "../service/api";
 import { AppError } from "@utils/AppError";
+import axios from "axios";
 
 type FormDataProps = {
   name: string;
@@ -61,6 +51,7 @@ export function SignUp() {
   });
 
   const navigation = useNavigation();
+
   function handleGoBack() {
     navigation.goBack();
   }
@@ -73,19 +64,34 @@ export function SignUp() {
 
   async function handleSignUp({ name, email, password }: FormDataProps) {
     try {
-      const response = await api.post('/users', { name, email, password });
-      console.log(response.data);
+      const response = await api.post("/users", { name, email, password });
+      console.log("Usuário criado com sucesso:", response.data);
+      toast.show({
+        title: "Conta criada com sucesso!",
+        placement: "top",
+        bgColor: "green.500",
+      });
+      navigation.goBack();
     } catch (error) {
-      const isAppError = error instanceof AppError;
-      const title = isAppError
-        ? error.message
-        : 'Não foi possível criar a conta. Tente novamente mais tarde.';
+      let title = "Erro desconhecido";
 
-      // toast.show({
-      //   title,
-      //   placement: 'top',
-      //   bgColor: 'red.500',
-      // });
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 400) {
+          title = error.response.data?.message || "Dados inválidos enviados.";
+        } else {
+          title = `Erro ${error.response?.status}: Algo deu errado.`;
+        }
+      } else if (error instanceof AppError) {
+        title = error.message;
+      }
+
+      toast.show({
+        title,
+        placement: "top",
+        bgColor: "red.500",
+      });
+
+      console.log("Erro detalhado:", JSON.stringify(error, null, 2));
     }
   }
 
@@ -95,16 +101,12 @@ export function SignUp() {
       style={{ flex: 1 }}
     >
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <VStack flex={1} bg="$gray700">
-          <Image
-            w="$full"
-            h={924}
-            source={gold}
-            defaultSource={gold}
-            alt="estetica e beleza"
-            position="absolute"
-          />
-
+        {/* Usando ImageBackground para aplicar o fundo */}
+        <ImageBackground
+          source={gold}
+          style={{ flex: 1 }}
+          resizeMode="cover"
+        >
           <VStack flex={1} px="$10" pb="$8">
             <Center my="$14">
               <Logo width={90} height={90} />
@@ -114,14 +116,13 @@ export function SignUp() {
             </Center>
 
             <Center gap="$0" flex={1}>
-              <Heading color="#000000" mb="$4">Crie sua conta</Heading>
+              <Heading color="#000000" mb="$4">
+                Crie sua conta
+              </Heading>
 
               <Controller
                 control={control}
                 name="name"
-                rules={{
-                  required: "Informe o nome.",
-                }}
                 render={({ field: { onChange, value } }) => (
                   <Input
                     placeholder="Nome"
@@ -135,13 +136,6 @@ export function SignUp() {
               <Controller
                 control={control}
                 name="email"
-                rules={{
-                  required: "Informe o email.",
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "E-mail inválido",
-                  },
-                }}
                 render={({ field: { onChange, value } }) => (
                   <Input
                     placeholder="E-mail"
@@ -200,7 +194,7 @@ export function SignUp() {
               />
             </Center>
           </VStack>
-        </VStack>
+        </ImageBackground>
       </ScrollView>
     </KeyboardAvoidingView>
   );
