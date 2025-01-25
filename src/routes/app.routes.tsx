@@ -29,7 +29,7 @@ type AppRoutes = {
   home: undefined;
   history: undefined;
   profile: undefined;
-  product: { product: string };
+  product: { productId: string };
   cart: undefined;
   pay: undefined;
   wallet: undefined;

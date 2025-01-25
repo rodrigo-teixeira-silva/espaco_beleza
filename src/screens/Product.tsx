@@ -10,10 +10,15 @@ import {
   View,
   Pressable,
   ScrollView,
+  useToast,
 } from "@gluestack-ui/themed";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { appNavigatorRoutesProps } from "@routes/app.routes";
-import { ArrowLeft } from "lucide-react-native";
+import { ArrowLeft, UserPen } from "lucide-react-native";
+
+import { api } from '../service/api';
+import { AppError } from '@utils/AppError';
+import { ExerciseDTO } from '@dtos/ExerciseDTO';
 
 import BodySvg from "@assets/body.svg";
 import RepetitionSvg from "@assets/repetitions.svg";
@@ -21,9 +26,20 @@ import { Button } from "@components/Button";
 import { ImageBackground } from "react-native";
 import gold from "@assets/gold.png";
 
+type RouteParamsProps = {
+  productId: string;
+}
+
+
 export function Product() {
   const navigation = useNavigation<appNavigatorRoutesProps>();
   const [isTextExpanded, setIsTextExpanded] = useState(false);
+  const [exercise, setExercise] = useState<ExerciseDTO>({} as ExerciseDTO);
+
+  const route = useRoute();
+  const { productId } = route.params as RouteParamsProps; 
+  console.log("ID =>", productId);
+
 
   function handleGoBack() {
     navigation.goBack();
