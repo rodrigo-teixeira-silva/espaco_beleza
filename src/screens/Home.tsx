@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { FlatList, StatusBar } from "react-native";
-import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 import { ExerciseDTO } from "@dtos/ExerciseDTO";
-import { api } from "../service/api";
+import { api } from "@services/api";
 
 import {
   VStack,
@@ -13,9 +13,9 @@ import {
   Text,
   Image,
   useToast,
-  Toast, 
-  ToastDescription, 
-  ToastTitle
+  Toast,
+  ToastDescription,
+  ToastTitle,
 } from "@gluestack-ui/themed";
 import { HomeHeader } from "@components/HomeHeader";
 import { ProductCard } from "@components/ProductCards";
@@ -26,16 +26,13 @@ import { Input } from "@components/Input";
 import { WhatsAppButton } from "@components/WhatzAppButoon";
 import gold from "@assets/gold.png";
 import { AppError } from "@utils/AppError";
-import { Loading } from '@components/Loading';
+import { Loading } from "@components/Loading";
 
 export function Home() {
   const [isLoading, setIsLoading] = useState(true);
-
-  const [produtos, setProdutos] = useState<ExerciseDTO[]>([]); // Array de ExerciseDTO
-  const [group, setGroup] = useState<string[]>([]); // Lista de grupos musculares
-  const [groupSelected, setGroupSelected] = useState<string | undefined>(
-    undefined
-  );
+  const [produtos, setProdutos] = useState<ExerciseDTO[]>([]);
+  const [group, setGroup] = useState<string[]>([]);
+  const [groupSelected, setGroupSelected] = useState<string | undefined>(undefined);
 
   const navigation = useNavigation<appNavigatorRoutesProps>();
   const toast = useToast();
@@ -53,7 +50,7 @@ export function Home() {
   ];
 
   function handleOpenProcedimentsDetails(productId: string) {
-    navigation.navigate("product", { productId: productId });
+    navigation.navigate("product", { productId });
   }
 
   async function fetchGroups() {
@@ -62,7 +59,6 @@ export function Home() {
       const groups = response.data;
       setGroup(groups);
 
-      // Definir o primeiro grupo como selecionado por padrão
       if (groups.length > 0) {
         setGroupSelected(groups[0]);
       }
@@ -71,57 +67,59 @@ export function Home() {
       const title = isAppError
         ? error.message
         : "Não foi possível carregar os grupos musculares";
-        toast.show({
-         
-          placement: "top",
-          duration: 3000, // Duração de 3 segundos
-          render: ({ id }) => {
-            const uniqueToastId = "toast-" + id;
-            return (
-              <Toast nativeID={uniqueToastId}  variant="solid">
-                <ToastTitle>{title}</ToastTitle>
-                <ToastDescription>
-                  {isAppError
-                    ? "Erro: " + error.message
-                    : "Não foi possível carregar os grupos musculares"}
-                </ToastDescription>
-              </Toast>
-            );
-          },
-        });
+
+      toast.show({
+        placement: "top",
+        duration: 3000,
+        render: ({ id }) => (
+          <Toast nativeID={`toast-${id}`} variant="solid" bg="red.500">
+            <ToastTitle>{title}</ToastTitle>
+            <ToastDescription>
+              {isAppError
+                ? "Erro: " + error.message
+                : "Tente novamente mais tarde."}
+            </ToastDescription>
+          </Toast>
+        ),
+      });
     }
   }
 
   async function fetchExercisesByGroup() {
     try {
       setIsLoading(true);
-      const response = await 
-      api.get(`/exercises/bygroup/${groupSelected}`);
-      
+      const response = await api.get(`/exercises/bygroup/${groupSelected}`);
       setProdutos(response.data);
-
-
     } catch (error) {
       const isAppError = error instanceof AppError;
       const title = isAppError
         ? error.message
         : "Não foi possível carregar os exercícios";
-      // toast.show({
-      //   title,
-      //   placement: "top",
-      //   bgColor: "red.500",
-      // });
-    } finally{
+
+      toast.show({
+        placement: "top",
+        duration: 3000,
+        render: ({ id }) => (
+          <Toast nativeID={`toast-${id}`} variant="solid" bg="red.500">
+            <ToastTitle>{title}</ToastTitle>
+            <ToastDescription>
+              {isAppError
+                ? "Erro: " + error.message
+                : "Tente novamente mais tarde."}
+            </ToastDescription>
+          </Toast>
+        ),
+      });
+    } finally {
       setIsLoading(false);
     }
   }
 
   useEffect(() => {
-    fetchGroups(); // Carrega os grupos ao montar o componente
+    fetchGroups();
   }, []);
 
   useEffect(() => {
-    // Carrega os exercícios quando o grupo padrão é definido
     if (groupSelected) {
       fetchExercisesByGroup();
     }
@@ -166,8 +164,6 @@ export function Home() {
 
     if (item.type === "products") {
       return (
-
-
         <VStack px="$8">
           <HStack justifyContent="space-between" mb="$5" alignItems="center">
             <Heading color="#000000" fontSize="$sm" fontFamily="$heading">
@@ -181,7 +177,7 @@ export function Home() {
 
           <FlatList
             data={produtos}
-            keyExtractor={(product) => product.id} // Usando ID como chave única
+            keyExtractor={(product) => product.id}
             renderItem={({ item: product }) => (
               <ProductCard
                 data={product}
@@ -194,8 +190,6 @@ export function Home() {
             ItemSeparatorComponent={() => <VStack height={12} />}
           />
         </VStack>
-
-        
       );
     }
 
@@ -216,25 +210,23 @@ export function Home() {
   ];
 
   return (
-    <>
-      <VStack flex={1} backgroundColor="#121214">
-        <Image
-          source={gold}
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-          }}
-          alt="Gold background"
-        />
-        <FlatList
-          data={content}
-          keyExtractor={(item) => item.type}
-          renderItem={renderContent}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 20 }}
-        />
-      </VStack>
-    </>
+    <VStack flex={1} backgroundColor="#121214">
+      <Image
+        source={gold}
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+        }}
+        alt="Gold background"
+      />
+      <FlatList
+        data={content}
+        keyExtractor={(item) => item.type}
+        renderItem={renderContent}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 20 }}
+      />
+    </VStack>
   );
 }

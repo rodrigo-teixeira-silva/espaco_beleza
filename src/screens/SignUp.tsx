@@ -27,7 +27,7 @@ import {
   ScrollView,
   View as RNView,
 } from "react-native";
-import { api } from "../service/api";
+import { api } from "@services/api";
 import { AppError } from "@utils/AppError";
 
 type FormDataProps = {
@@ -73,13 +73,13 @@ export function SignUp() {
 
   async function handleSignUp({ name, email, password }: FormDataProps) {
     try {
-      const response = await api.post('/users', { name, email, password });
+      const response = await api.post("/users", { name, email, password });
       console.log(response.data);
     } catch (error) {
       const isAppError = error instanceof AppError;
       const title = isAppError
         ? error.message
-        : 'Não foi possível criar a conta. Tente novamente mais tarde.';
+        : "Não foi possível criar a conta. Tente novamente mais tarde.";
 
       // toast.show({
       //   title,
@@ -114,7 +114,9 @@ export function SignUp() {
             </Center>
 
             <Center gap="$0" flex={1}>
-              <Heading color="#000000" mb="$4">Crie sua conta</Heading>
+              <Heading color="#000000" mb="$4">
+                Crie sua conta
+              </Heading>
 
               <Controller
                 control={control}

@@ -16,9 +16,9 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { appNavigatorRoutesProps } from "@routes/app.routes";
 import { ArrowLeft, UserPen } from "lucide-react-native";
 
-import { api } from '../service/api';
-import { AppError } from '@utils/AppError';
-import { ExerciseDTO } from '@dtos/ExerciseDTO';
+import { api } from "@services/api";
+import { AppError } from "@utils/AppError";
+import { ExerciseDTO } from "@dtos/ExerciseDTO";
 
 import BodySvg from "@assets/body.svg";
 import RepetitionSvg from "@assets/repetitions.svg";
@@ -28,8 +28,7 @@ import gold from "@assets/gold.png";
 
 type RouteParamsProps = {
   productId: string;
-}
-
+};
 
 export function Product() {
   const navigation = useNavigation<appNavigatorRoutesProps>();
@@ -37,9 +36,8 @@ export function Product() {
   const [exercise, setExercise] = useState<ExerciseDTO>({} as ExerciseDTO);
 
   const route = useRoute();
-  const { productId } = route.params as RouteParamsProps; 
+  const { productId } = route.params as RouteParamsProps;
   console.log("ID =>", productId);
-
 
   function handleGoBack() {
     navigation.goBack();
@@ -53,12 +51,8 @@ export function Product() {
     "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain";
 
   return (
-    <ImageBackground
-      source={gold}
-      style={{ flex: 1 }}
-      resizeMode="cover"
-    >
-      <VStack flex={1} >
+    <ImageBackground source={gold} style={{ flex: 1 }} resizeMode="cover">
+      <VStack flex={1}>
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
@@ -125,7 +119,13 @@ export function Product() {
               </View>
             </Box>
 
-            <Box bg="rgba(32, 32, 36, 0.8)" rounded="$md" mt="$2" pb="$10" px="$4">
+            <Box
+              bg="rgba(32, 32, 36, 0.8)"
+              rounded="$md"
+              mt="$2"
+              pb="$10"
+              px="$4"
+            >
               <HStack
                 alignItems="center"
                 justifyContent="space-around"
@@ -133,19 +133,19 @@ export function Product() {
                 mt="$5"
               >
                 <VStack>
-                <HStack>
-                  <RepetitionSvg/>
-                  <Text color="#FFF" ml="$2" mb="$4" >
-                    tipo de tratamento
-                  </Text>
-                </HStack>
+                  <HStack>
+                    <RepetitionSvg />
+                    <Text color="#FFF" ml="$2" mb="$4">
+                      tipo de tratamento
+                    </Text>
+                  </HStack>
 
-                <HStack>
-                  <RepetitionSvg />
-                  <Text color="#FFF" ml="$2">
-                    confirme seu horário
-                  </Text>
-                </HStack>
+                  <HStack>
+                    <RepetitionSvg />
+                    <Text color="#FFF" ml="$2">
+                      confirme seu horário
+                    </Text>
+                  </HStack>
                 </VStack>
               </HStack>
 
