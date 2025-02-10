@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { ScrollView, TouchableOpacity, Alert, ImageBackground } from "react-native";
+import {
+  ScrollView,
+  TouchableOpacity,
+  Alert,
+  ImageBackground,
+} from "react-native";
 import { ScreenHeader } from "@components/ScreenHeader";
 import * as ImagePicker from "expo-image-picker";
 
@@ -12,7 +17,7 @@ import { StatusBar } from "expo-status-bar";
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 
-import gold from "@assets/gold.png"; // Imagem de fundo
+import gold from "@assets/gold.png"; 
 
 export function Profile() {
   const [userPhoto, setUserPhoto] = useState(
@@ -62,19 +67,16 @@ export function Profile() {
   }
 
   return (
-    <ImageBackground
-      source={gold}
-      style={{ flex: 1 }}
-      resizeMode="cover"
-    >
-      <VStack flex={1}> {/* Garantir que o VStack ocupe toda a altura */}
+    <ImageBackground source={gold} style={{ flex: 1 }} resizeMode="cover">
+      <VStack flex={1}>
+        {" "}
+        
         <StatusBar style="dark" backgroundColor="transparent" translucent />
-
         <ScrollView
           contentContainerStyle={{
             paddingVertical: 16,
             paddingHorizontal: 30,
-            flexGrow: 1, // Garante que o ScrollView preencha o espaço disponível
+            flexGrow: 1,
           }}
         >
           <Center mt="$6" px="$10">

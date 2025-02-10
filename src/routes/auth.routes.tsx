@@ -10,6 +10,7 @@ import { SplashScreen } from "@screens/SplashScreen";
 import { Started } from "@screens/Started";
 
 
+
 type AuthRoutes = {
 
   SplashScreen: undefined;
@@ -19,6 +20,9 @@ type AuthRoutes = {
   SignUp: undefined;
   RecoverPassword: undefined;
   Cart: undefined;
+  
+  
+
   
 };
 

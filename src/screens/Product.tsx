@@ -60,7 +60,6 @@ export function Product() {
             paddingHorizontal: 16,
           }}
         >
-          {/* Header */}
           <VStack pt="$12" pb="$4">
             <Pressable onPress={handleGoBack}>
               <Icon as={ArrowLeft} color="#000000" size="xl" />

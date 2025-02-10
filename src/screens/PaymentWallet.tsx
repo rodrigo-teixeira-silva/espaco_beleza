@@ -15,7 +15,6 @@ export function PaymentWallet() {
   
   const toast = useToast();
 
-  // Função para adicionar fundos
   const addFunds = () => {
     setBalance(balance + 1000);
     toast.show({ title: "Fundos adicionados com sucesso!", placement: "top" });
@@ -59,7 +58,7 @@ export function PaymentWallet() {
             Histórico de Transações
           </Heading>
 
-          {/* Exibindo transações */}
+      
           {transactions.map((transaction) => (
             <TransactionCard
               key={transaction.id}
@@ -71,7 +70,7 @@ export function PaymentWallet() {
 
           <Center mt="$8" px="$10">
             <Button onPress={addFunds} title="Adicionar Fundos" variant="primary" mb="$4" />
-            <Button onPress={withdrawFunds} title="Retirar Fundos" variant="secondary" />
+{/* <Button onPress={withdrawFunds} title="Retirar Fundos" variant="secondary" /> */}
           </Center>
         </VStack>
       </ScrollView>

@@ -95,7 +95,7 @@ export function Signin() {
             <Center gap="$2" flex={1}>
               <Heading color="#000000">Acesse sua conta</Heading>
 
-              {/* Campo de E-mail */}
+             
               <Controller
                 control={control}
                 name="email"
@@ -112,7 +112,7 @@ export function Signin() {
                 )}
               />
 
-              {/* Campo de Senha */}
+              
               <Controller
                 control={control}
                 name="password"
@@ -144,7 +144,7 @@ export function Signin() {
               </HStack>
 
 
-              {/* Botões de login social */}
+              
               <HStack
                 space="3xl"
                 justifyContent="space-evenly"
@@ -161,7 +161,7 @@ export function Signin() {
               </HStack>
             </Center>
 
-            {/* Navegar para recuperar senha ou criar nova conta */}
+          
             <Center justifyContent="flex-end" mt="$6">
               <Pressable onPress={handleRecoverPassword}>
                 <Text color="#000000" fontSize="$sm" fontWeight="bold">

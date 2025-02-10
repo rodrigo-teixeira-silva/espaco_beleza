@@ -15,14 +15,24 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.espaco-beleza"
+      "bundleIdentifier": "com.anonymous.espaco-beleza",
+      "infoPlist": {
+        "NSCameraUsageDescription": "O aplicativo precisa acessar a câmera para capturar imagens.",
+        "NSPhotoLibraryUsageDescription": "O aplicativo precisa acessar a biblioteca de fotos.",
+        "NSPhotoLibraryAddUsageDescription": "O aplicativo precisa salvar suas imagens na biblioteca."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.espaco_beleza"
+      "package": "com.anonymous.espaco_beleza",
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -32,7 +42,14 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "The app accesses your photos to let you share them with your friends."
+          "photosPermission": "O aplicativo precisa acessar suas fotos para permitir compartilhamento."
+        }
+      ],
+      "expo-barcode-scanner",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Permissão necessária para capturar imagens."
         }
       ]
     ]

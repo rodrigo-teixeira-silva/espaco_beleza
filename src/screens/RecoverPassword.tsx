@@ -39,7 +39,7 @@ const signInSchema = yup.object({
 
 export function RecoverPassword() {
   const [borderColor, setBorderColor] = useState("#7C7C8A");
-  const [keyboardVisible, setKeyboardVisible] = useState(false); // Para controlar a visibilidade dos botões
+  const [keyboardVisible, setKeyboardVisible] = useState(false); 
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
 
   const {
@@ -55,16 +55,16 @@ export function RecoverPassword() {
   }
 
   function handleSendEmail({ email }: FormDataEmailProps) {
-    // Lógica para enviar o e-mail
+   
     console.log("E-mail enviado!", email);
   }
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", () => {
-      setKeyboardVisible(true); // O teclado apareceu, esconder os botões
+      setKeyboardVisible(true); 
     });
     const keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () => {
-      setKeyboardVisible(false); // O teclado desapareceu, mostrar os botões
+      setKeyboardVisible(false); 
     });
 
     return () => {

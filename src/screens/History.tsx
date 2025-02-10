@@ -36,7 +36,7 @@ export function History() {
         style={{ flex: 1 }}
         resizeMode="cover"
       >
-        {/* View para aplicar o fundo no Header */}
+       
         <View style={{ backgroundColor: "transparent", paddingTop: StatusBar.currentHeight || 24 }}>
           <ScreenHeader title="Histórico de agendamentos" />
         </View>
