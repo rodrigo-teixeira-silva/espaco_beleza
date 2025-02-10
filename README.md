@@ -3,7 +3,7 @@
 
 # Espaço Estética
 
-[![NPM](https://img.shields.io/npm/l/react)](https://github.com/rodrigo-teixeira-silva/espaco_estetica/src/LICENSE)
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/rodrigo-teixeira-silva/espaco_beleza/blob/main/src/LICENCE)
 
 # Sobre o projeto
 
