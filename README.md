@@ -34,9 +34,9 @@ A Espaço Estética transforma a jornada do cliente em uma experiência digital 
 | :---------------------------: | :-------------------: | :----------------: |  
 | <img src="src/assets/home.png " width="170px" height="350px"/> | <img src="src/assets/histórico.png" width="180px" height="350px"/> | <img src="src/assets/carteira.png" width="180px" height="350px"/> | 
 
-|**Tela de perfil** | **Tela de carrinho<br> de compras** |
-| :--------------------------:| :-------------------------------: |
-| <img src="src/assets/tela de perfil.png" width="170px" height="350px"/> |<img src="src/assets/carrinho de compras.png" width="170px" height="350px"/> | 
+|**Tela de perfil** | **Tela de carrinho<br> de compras** | ** Tela de produtos **
+| :--------------------------:| :-------------------------------: | :-------------------------------: |
+| <img src="src/assets/tela de perfil.png" width="170px" height="350px"/> |<img src="src/assets/carrinho de compras.png" width="170px" height="350px"/> | <img src="src/assets/Produtos.png" width="170px" height="350px"/> | 
 
 # Tecnologias utilizadas
 

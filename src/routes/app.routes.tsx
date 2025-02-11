@@ -67,17 +67,7 @@ function BottomTabs() {
     >
 
 
-      <Tab.Screen
-        name="pay"
-        component={Pay}
-        options={{
-          tabBarButton: () => null,
-          tabBarItemStyle: {
-            display: "none",
-          },
-        }}
-      />
-
+     
 
       <Tab.Screen
         name="home"
@@ -153,6 +143,18 @@ function BottomTabs() {
           ),
         }}
       />
+
+<Tab.Screen
+        name="pay"
+        component={Pay}
+        options={{
+          tabBarButton: () => null,
+          tabBarItemStyle: {
+            display: "none",
+          },
+        }}
+      />
+
 
 
       {/* <Tab.Screen
