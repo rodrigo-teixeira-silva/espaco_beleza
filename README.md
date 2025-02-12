@@ -22,8 +22,8 @@ Comercialização de cosméticos, suplementos e acessórios de beleza em uma exp
 Organização prática de sessões estéticas, permitindo que os clientes escolham horários disponíveis e reservem seus serviços com facilidade.
 
 🔹 Pagamentos Modernos e Seguros
-Facilidade e segurança na hora de pagar, com múltiplas opções:
-✔ QR Code (Pix) – Pagamento instantâneo e sem complicações.
+Facilidade e segurança na hora de pagar, com múltiplas opções:<br>
+✔ QR Code (Pix) – Pagamento instantâneo e sem complicações.<br>
 ✔ Cartão de Crédito/Débito – Compatível com as principais bandeiras do mercado.
 
 O Espaço Estética eleva o padrão de atendimento no setor de beleza, proporcionando uma experiência digital eficiente, intuitiva e moderna.
