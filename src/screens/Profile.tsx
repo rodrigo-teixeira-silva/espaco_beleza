@@ -19,10 +19,22 @@ import { Button } from "@components/Button";
 
 import gold from "@assets/gold.png"; 
 
+type FormDataProps = {
+  name: string;
+  email: string;
+  password: string;
+  old_password: string;
+  confirm_password: string;
+};
+
 export function Profile() {
-  const [userPhoto, setUserPhoto] = useState(
-    "https://github.com/rodrigo-teixeira-silva.png"
-  );
+  async function handleUserPhotoSelect
+  await ImagePicker.launchImageLibraryAsync()
+);
+
+
+  const [userPhoto, setUserPhoto] = useState()
+   
 
   const toast = useToast();
 
@@ -59,7 +71,15 @@ export function Profile() {
           });
         }
 
-        setUserPhoto(photoSelected.assets[0].uri);
+        const fileExtension = photoUri.split('.').pop();
+        const photoFile = {
+          name: `${ ImagePicker}.${fileExtension}`.toLowerCase(),
+          uri: photoSelected,
+          type: `${photoSelected}/${fileExtension}`
+        }
+        console.log(photoFile);
+
+
       }
     } catch (error) {
       console.log(error);

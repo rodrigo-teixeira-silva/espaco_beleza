@@ -36,13 +36,19 @@ Simplicidade, inovação e praticidade ao alcance de um toque!
 | :-------------------------------------------: | :------------------: | :------------------------------------------: |
 | <img src="src/assets/tela inicial.png" width="170px" height="350px"/> | <img src="src/assets/start.png" width="170px" height="350px"/> | <img src="src/assets/welcomeScreen.png" width="170px" height="350px"/> |
 
+| **Tela de Login** | **Tela de Cadastro** | **Tela recuperar senha** |
+| :-------------------------------------------: | :------------------: | :------------------------------------------: |
+| <img src="src/assets/tela de login.png " width="170px" height="350px"/> | <img src="src/assets/tela de cadastro.png " width="170px" height="350px"/> | <img src="src/assets/recuperar senha.png " width="170px" height="350px"/> |
+
 |**Tela de home** | **Tela de histórico** | **Tela de carteira** |
 | :---------------------------: | :-------------------: | :----------------: |  
-| <img src="src/assets/home.png " width="170px" height="350px"/> | <img src="src/assets/histórico.png" width="180px" height="350px"/> | <img src="src/assets/carteira.png" width="180px" height="350px"/> | 
+| <img src="src/assets/home.png " width="170px" height="350px"/> | <img src="src/assets/histórico.png" width="180px" height="350px"/> | <img src="src/assets/Produtos.png" width="170px" height="350px"/> | 
+
+
 
 |**Tela de perfil** | **Tela de carrinho<br> de compras** | ** Tela de produtos **
 | :--------------------------:| :-------------------------------: | :-------------------------------: |
-| <img src="src/assets/tela de perfil.png" width="170px" height="350px"/> |<img src="src/assets/carrinho de compras.png" width="170px" height="350px"/> | <img src="src/assets/Produtos.png" width="170px" height="350px"/> | 
+| <img src="src/assets/tela de perfil.png" width="170px" height="350px"/> |<img src="src/assets/carrinho de compras.png" width="170px" height="350px"/> | <img src="src/assets/carteira.png" width="180px" height="350px"/> | 
 
 # Tecnologias utilizadas
 
