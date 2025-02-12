@@ -1,7 +1,7 @@
 
 ## 💻 Projeto
 
-# Espaço Estética
+# Espaço Estética – A Revolução Digital para Clínicas de Beleza
 
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/rodrigo-teixeira-silva/espaco_beleza/blob/main/src/LICENCE)
 
@@ -9,20 +9,26 @@
 
  **</>Code link Project**.
 
-A Espaço Estética é uma aplicação mobile projetada para atender clínicas de estética e centros de beleza, proporcionando uma experiência digital prática e moderna para clientes e profissionais. A plataforma permite a apresentação de pacotes de serviços, planos personalizados e a venda de produtos relacionados ao bem-estar e cuidados pessoais.
+Espaço Estética – A Revolução Digital para Clínicas de Beleza
+O Espaço Estética é um aplicativo mobile inovador, projetado para transformar a experiência de clientes e profissionais de clínicas de estética e centros de beleza. A plataforma reúne tecnologia e praticidade, oferecendo uma solução completa para apresentação de serviços, agendamentos e vendas de produtos de beleza.
 
-Catálogo de Pacotes e Planos:Exibição detalhada de pacotes de serviços estéticos, com descrições e preços 
+🔹 Catálogo de Pacotes e Planos
+Exibição detalhada de serviços estéticos, incluindo descrições, preços e benefícios. Os clientes podem visualizar as opções disponíveis e escolher a que melhor atende às suas necessidades.
 
-Venda de Produtos: Loja integrada para comercialização de cosméticos, suplementos e acessórios de beleza. Os clientes podem navegar pelo catálogo, adicionar produtos ao carrinho e finalizar suas compras diretamente pelo aplicativo.
+🔹 Loja Integrada
+Comercialização de cosméticos, suplementos e acessórios de beleza em uma experiência de compra fluida. Os usuários podem navegar pelo catálogo, adicionar itens ao carrinho e finalizar suas compras diretamente pelo app.
 
-Agendamentos:Organização de sessões estéticas, permitindo ao usuário escolher o melhor horário e pacote conforme suas preferências e disponibilidade.
+🔹 Agendamentos Inteligentes
+Organização prática de sessões estéticas, permitindo que os clientes escolham horários disponíveis e reservem seus serviços com facilidade.
 
-Métodos de Pagamento Modernos:O aplicativo oferece opções seguras e convenientes de pagamento, incluindo:
+🔹 Pagamentos Modernos e Seguros
+Facilidade e segurança na hora de pagar, com múltiplas opções:
+✔ QR Code (Pix) – Pagamento instantâneo e sem complicações.
+✔ Cartão de Crédito/Débito – Compatível com as principais bandeiras do mercado.
 
-QR Code: pagamento instantâneo via Pix
-Cartão de Crédito/Débito: compatível com as principais 
+O Espaço Estética eleva o padrão de atendimento no setor de beleza, proporcionando uma experiência digital eficiente, intuitiva e moderna.
 
-A Espaço Estética transforma a jornada do cliente em uma experiência digital fluida, prática e eficiente, elevando o padrão de serviços oferecidos no segmento de estética e beleza.
+Simplicidade, inovação e praticidade ao alcance de um toque!
 
 ## Layout mobile
 
