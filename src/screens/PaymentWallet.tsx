@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { ScrollView, TouchableOpacity, View } from "react-native";
-import { VStack, Text, Heading, Center, useToast } from "@gluestack-ui/themed";
+import { VStack, Text, Heading, Center, Image, Divider, useToast } from "@gluestack-ui/themed";
 import { StatusBar } from "expo-status-bar";
 import { Button } from "@components/Button";
 import { TransactionCard } from "@components/TransactionCard";  
+
+import gold from "@assets/gold.png";
 
 export function PaymentWallet() {
   const [balance, setBalance] = useState(2500); 
@@ -17,34 +19,49 @@ export function PaymentWallet() {
 
   const addFunds = () => {
     setBalance(balance + 1000);
-    toast.show({ title: "Fundos adicionados com sucesso!", placement: "top" });
+    toast.show({ description: "Fundos adicionados com sucesso!", placement: "top" });
   };
 
-  // Função para retirar fundos
   const withdrawFunds = () => {
     if (balance >= 500) {
       setBalance(balance - 500); 
-      toast.show({ title: "Retirada realizada com sucesso!", placement: "top" });
+      toast.show({ description: "Retirada realizada com sucesso!", placement: "top" });
     } else {
-      toast.show({ title: "Saldo insuficiente para retirada", placement: "top", status: "error" });
+      toast.show({ description: "Saldo insuficiente para retirada", placement: "top", status: "error" });
     }
   };
 
   return (
     <VStack flex={1}>
-      <StatusBar style="light" backgroundColor="#121214" translucent />
+      <StatusBar style="dark" backgroundColor="transparent" translucent />
       
-      <Center bg="$gray900" pt="$8" pb="$4" px="$6">
-        <Heading color="$white" fontFamily="$heading" fontSize="$xl">
+      <Image
+        w="$full"
+        h="$full"
+        source={gold}
+        defaultSource={gold}
+        alt="estética e beleza"
+        position="absolute"
+        top={0}
+        left={0}
+        right={0}
+        bottom={0}
+        resizeMode="cover"
+      />
+      
+      <Center bg="transparent" pt="$8" pb="$4" px="$6" flex={1} justifyContent="center">
+        <Heading color="$gold500" fontFamily="$heading" fontSize="$xl">
           Carteira de Pagamento
         </Heading>
-        <Text color="$gray200" fontSize="$lg" mt="$2">
+        <Text color="$gray00" fontSize="$lg" mt="$2">
           Saldo disponível:
         </Text>
         <Text color="$green500" fontSize="$2xl" fontWeight="bold" mt="$2">
           R$ {balance.toFixed(2)}
         </Text>
       </Center>
+      
+      <Divider my="$4" bg="$gray700" />
 
       <ScrollView
         contentContainerStyle={{
@@ -54,11 +71,10 @@ export function PaymentWallet() {
         }}
       >
         <VStack space="md" mt="$6">
-          <Heading fontFamily="$heading" color="$gray200" fontSize="$lg">
+          <Heading fontFamily="$heading" color="$gold500" fontSize="$lg">
             Histórico de Transações
           </Heading>
 
-      
           {transactions.map((transaction) => (
             <TransactionCard
               key={transaction.id}
@@ -67,13 +83,13 @@ export function PaymentWallet() {
               description={transaction.description}
             />
           ))}
-
-          <Center mt="$8" px="$10">
-            <Button onPress={addFunds} title="Adicionar Fundos" variant="primary" mb="$4" />
-{/* <Button onPress={withdrawFunds} title="Retirar Fundos" variant="secondary" /> */}
-          </Center>
         </VStack>
       </ScrollView>
+
+      <Center mt="$8" px="$10">
+        <Button onPress={addFunds} title="Adicionar Fundos" variant="solid" mb="$4" />
+        {/* <Button onPress={withdrawFunds} title="Retirar Fundos" variant="solid" /> */}
+      </Center>
     </VStack>
   );
 }

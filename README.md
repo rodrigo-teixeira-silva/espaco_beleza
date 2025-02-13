@@ -46,9 +46,13 @@ Simplicidade, inovação e praticidade ao alcance de um toque!
 
 
 
-|**Tela de perfil** | **Tela de carrinho<br> de compras** | ** Tela de produtos **
+|**Tela de perfil** | **Tela de carrinho<br> de compras** | **Tela de produtos**
 | :--------------------------:| :-------------------------------: | :-------------------------------: |
 | <img src="src/assets/tela de perfil.png" width="170px" height="350px"/> |<img src="src/assets/carrinho de compras.png" width="170px" height="350px"/> | <img src="src/assets/carteira.png" width="180px" height="350px"/> | 
+
+|**Botões de navegação** | **Navegação gaveta** | **Navegação<br>gaveta personalizada**
+| :--------------------------:| :-------------------------------: | :-------------------------------: |
+| <img src="src/assets/BottonNavigation.png" width="170px" height="350px"/> |<img src="src/assets/Drawer.png" width="170px" height="350px"/> | <img src="src/assets/customDrawer.png" width="180px" height="350px"/> | 
 
 # Tecnologias utilizadas
 

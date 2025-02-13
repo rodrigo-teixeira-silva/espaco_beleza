@@ -26,6 +26,8 @@ import { Button } from "@components/Button";
 import { ImageBackground } from "react-native";
 import gold from "@assets/gold.png";
 
+import CustomDrawer from "@components/CustomDrawer";
+
 type RouteParamsProps = {
   productId: string;
 };
@@ -34,6 +36,7 @@ export function Product() {
   const navigation = useNavigation<appNavigatorRoutesProps>();
   const [isTextExpanded, setIsTextExpanded] = useState(false);
   const [exercise, setExercise] = useState<ExerciseDTO>({} as ExerciseDTO);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false); // Controle de visibilidade do drawer
 
   const route = useRoute();
   const { productId } = route.params as RouteParamsProps;
@@ -47,12 +50,20 @@ export function Product() {
     setIsTextExpanded(!isTextExpanded);
   }
 
+  const handleOpenDrawer = () => {
+    setIsDrawerOpen(true); // Abre o drawer
+  };
+
+  const handleCloseDrawer = () => {
+    setIsDrawerOpen(false); // Fecha o drawer
+  };
+
   const textContent =
-"A limpeza de pele com ácido é um procedimento estético indicado para promover uma renovação celular profunda, proporcionando uma pele mais uniforme, luminosa e livre de impurezas. O tratamento envolve a aplicação de ácidos específicos, como ácido salicílico, glicólico ou mandélico, que auxiliam na remoção das células mortas, controle da oleosidade e redução de manchas e cravos."
-  
-    return (
-    <ImageBackground source={gold} style={{ flex: 1 }} resizeMode="cover">
-      <VStack flex={1}>
+    "A limpeza de pele com ácido é um procedimento estético indicado para promover uma renovação celular profunda, proporcionando uma pele mais uniforme, luminosa e livre de impurezas. O tratamento envolve a aplicação de ácidos específicos, como ácido salicílico, glicólico ou mandélico, que auxiliam na remoção das células mortas, controle da oleosidade e redução de manchas e cravos.";
+
+  return (
+    <VStack flex={1}>
+      <ImageBackground source={gold} style={{ flex: 1 }} resizeMode="cover">
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
@@ -157,12 +168,24 @@ export function Product() {
 
               <Button
                 title="Comprar agora"
-                onPress={() => navigation.navigate("pay")}
+                onPress={handleOpenDrawer} // Abre o drawer ao clicar
               />
             </Box>
           </VStack>
         </ScrollView>
-      </VStack>
-    </ImageBackground>
+      </ImageBackground>
+
+      <CustomDrawer
+        isOpen={isDrawerOpen}
+        onClose={handleCloseDrawer} // Passa a função para fechar o drawer
+        title="Pagamento"
+        content="Finalize sua compra "
+        buttons={[
+        <Button title="Pix" mb="$2" mt="$2" onPress={() => {}} />, 
+        <Button title="Cartão" mb="$2" onPress={() => {}} />,
+ 
+      ]}
+      />
+    </VStack>
   );
 }

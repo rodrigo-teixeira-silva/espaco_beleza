@@ -65,10 +65,7 @@ function BottomTabs() {
         },
       }}
     >
-
-
-     
-
+      
       <Tab.Screen
         name="home"
         component={Home}

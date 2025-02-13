@@ -28,9 +28,9 @@ type FormDataProps = {
 };
 
 export function Profile() {
-  async function handleUserPhotoSelect
-  await ImagePicker.launchImageLibraryAsync()
-);
+//   async function handleUserPhotoSelect
+//   await ImagePicker.launchImageLibraryAsync()
+// );
 
 
   const [userPhoto, setUserPhoto] = useState()
