@@ -23,10 +23,13 @@ import { Cart } from "@screens/Cart";
 import { Pay } from "@screens/Pay";
 import { Wallet } from "@screens/wallet";
 import { PaymentWallet } from "@screens/PaymentWallet";
+import { Cartao } from "@screens/Card"
 
 import gold from "@assets/gold.png";
 import { QrCode } from "lucide-react-native";
 import QRCodeScann from "@screens/QRCodeScann";
+import { Pix } from "@screens/Pix";
+
 
 type AppRoutes = {
   home: undefined;
@@ -38,6 +41,8 @@ type AppRoutes = {
   wallet: undefined;
   shoppingSvg: undefined;
   QRCodeScann: undefined;
+  Pix: undefined;
+  Cartao: undefined
 };
 
 export type appNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
@@ -119,7 +124,7 @@ function BottomTabs() {
         }}
       />
 
-        <Tab.Screen
+      <Tab.Screen
         name="QRCodeScann"
         component={QRCodeScann}
         options={{
@@ -141,7 +146,7 @@ function BottomTabs() {
         }}
       />
 
-<Tab.Screen
+      <Tab.Screen
         name="pay"
         component={Pay}
         options={{
@@ -152,7 +157,27 @@ function BottomTabs() {
         }}
       />
 
+      <Tab.Screen
+        name="Pix"
+        component={Pix}
+        options={{
+          tabBarButton: () => null,
+          tabBarItemStyle: {
+            display: "none",
+          },
+        }}
 
+      />
+       <Tab.Screen
+        name="Cartao"
+        component={Cartao}
+        options={{
+          tabBarButton: () => null,
+          tabBarItemStyle: {
+            display: "none",
+          },
+        }}
+      />
 
       {/* <Tab.Screen
         name="QrCode"
