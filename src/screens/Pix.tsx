@@ -7,7 +7,6 @@ import {
   Box,
   Pressable,
   useToast,
-  Image,
 } from "@gluestack-ui/themed";
 import { useNavigation } from "@react-navigation/native";
 import { Clipboard } from "react-native";
@@ -15,14 +14,15 @@ import { ArrowLeft, Copy } from "lucide-react-native";
 import QRCode from "react-native-qrcode-svg";
 import { Button } from "@components/Button";
 import { CustomToast } from "../components/CustomToast";
-import Gold from "@assets/gold.png"; // Corrigido para importação correta
+import Gold from "@assets/gold.png";
+
 
 export function Pix() {
   const navigation = useNavigation();
   const toast = useToast();
 
   const pixCode =
-    "00020126330014BR.GOV.BCB.PIX0114+5511999999992520001234567895303986540625.005802BR5920Nome do Beneficiário6009SAO PAULO62070503***6304ABCD"; // Código Pix fictício
+    "00020126330014BR.GOV.BCB.PIX0114+5511999999992520001234567895303986540625.005802BR5920Nome do Beneficiário6009SAO RODRIGO62070503***6304ABCD";
 
   const copyToClipboard = () => {
     Clipboard.setString(pixCode);
