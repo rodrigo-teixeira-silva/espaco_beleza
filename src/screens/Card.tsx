@@ -46,9 +46,9 @@ export function Cartao() {
       style={{ flex: 1 }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      {/* Container principal com position relative */}
+    
       <Box flex={1} position="relative">
-        {/* Imagem de background gold */}
+  
         <Image
           w="$full"
           h="$full"

@@ -9,13 +9,12 @@ import {
   useToast,
 } from "@gluestack-ui/themed";
 import { useNavigation } from "@react-navigation/native";
-import { Clipboard } from "react-native";
+import { Clipboard, ImageBackground } from "react-native";
 import { ArrowLeft, Copy } from "lucide-react-native";
 import QRCode from "react-native-qrcode-svg";
 import { Button } from "@components/Button";
 import { CustomToast } from "../components/CustomToast";
 import Gold from "@assets/gold.png";
-
 
 export function Pix() {
   const navigation = useNavigation();
@@ -41,49 +40,40 @@ export function Pix() {
   };
 
   return (
-    <VStack
-      flex={1}
-      p="$6"
-      alignItems="center"
-      justifyContent="center"
-      position="relative"
-    >
+    <Box as={ImageBackground} source={Gold} flex={1} resizeMode="cover" p="$6">
       <Pressable onPress={() => navigation.goBack()} alignSelf="flex-start">
         <Icon as={ArrowLeft} size="xl" color="$white" />
       </Pressable>
 
-      <Heading color="$white" mt="$4" mb="$6">
-        Pagamento via Pix
-      </Heading>
+      <VStack flex={1} alignItems="center" justifyContent="center">
+        <Heading color="$gray700" mt="$4" mb="$6">
+          Pagamento via Pix
+        </Heading>
 
-      <Box bg="$white" p="$2" rounded="$lg">
-        <QRCode value={pixCode} size={200} />
-      </Box>
+        <Box bg="$white" p="$2" rounded="$lg">
+          <QRCode value={pixCode} size={200} />
+        </Box>
 
-      <Text color="$gray300" mt="$4" textAlign="center">
-        Escaneie o QR Code ou copie o código abaixo para realizar o pagamento.
-      </Text>
-
-      <Box bg="$gray800" p="$4" rounded="$md" mt="$4" alignItems="center">
-        <Text
-          color="$yellow100"
-          fontWeight="$bold"
-          selectable
-          textAlign="center"
-        >
-          {pixCode}
+        <Text color="$gray700" mt="$4" textAlign="center">
+          Escaneie o QR Code ou copie o código abaixo para realizar o pagamento.
         </Text>
-      </Box>
 
-      <Button
-        mt="$6"
-        w="$full"
-        title="Copiar Código Pix"
-        onPress={copyToClipboard}
-      >
-        <Icon as={Copy} size="lg" color="$white" mr="$2" />
-        <Text color="$white">Copiar Código Pix</Text>
-      </Button>
-    </VStack>
+        <Box bg="$gray800" p="$4" rounded="$md" mt="$4" alignItems="center">
+          <Text
+            color="$gray700"
+            fontWeight="$bold"
+            selectable
+            textAlign="center"
+          >
+            {pixCode}
+          </Text>
+        </Box>
+
+        <Button mt="$6" w="$full" title="Copiar Código Pix" onPress={copyToClipboard}>
+          <Icon as={Copy} size="lg" color="$white" mr="$2" />
+          <Text color="$white">Copiar Código Pix</Text>
+        </Button>
+      </VStack>
+    </Box>
   );
 }

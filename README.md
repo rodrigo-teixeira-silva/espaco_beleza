@@ -54,6 +54,12 @@ Simplicidade, inovação e praticidade ao alcance de um toque!
 | :--------------------------:| :-------------------------------: | :-------------------------------: |
 | <img src="src/assets/BottonNavigation.gif" width="170px" height="350px"/> |<img src="src/assets/Drawer.gif" width="170px" height="350px"/> | <img src="src/assets/customDrawer.png" width="180px" height="350px"/> | 
 
+
+|**Pagamento Cartão** | **Pagamento Pix** | 
+| :--------------------------:| :-------------------------------: | 
+| <img src="src/assets/Card.gif" width="170px" height="350px"/> |<img src="src/assets/pix.gif" width="170px" height="350px"/> | 
+
+
 # Tecnologias utilizadas
 
 - [@expo-google-fonts/roboto](https://www.npmjs.com/package/@expo-google-fonts/roboto) - ^0.2.3  

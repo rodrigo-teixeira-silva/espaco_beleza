@@ -50,14 +50,6 @@ export function Product() {
     setIsTextExpanded(!isTextExpanded);
   }
 
-<<<<<<< HEAD
-  const handleOpenDrawer = () => {
-    setIsDrawerOpen(true); // Abre o drawer
-  };
-
-  const handleCloseDrawer = () => {
-    setIsDrawerOpen(false); // Fecha o drawer
-=======
   function handleGoPix() {
     navigation.navigate("Pix");
   }
@@ -73,7 +65,7 @@ export function Product() {
 
   const handleCloseDrawer = () => {
     setIsDrawerOpen(false); 
->>>>>>> 15265ae (feat: created Pix component Screen)
+
   };
 
   const textContent =
@@ -195,21 +187,12 @@ export function Product() {
 
       <CustomDrawer
         isOpen={isDrawerOpen}
-<<<<<<< HEAD
-        onClose={handleCloseDrawer} // Passa a função para fechar o drawer
-        title="Pagamento"
-        content="Finalize sua compra "
-        buttons={[
-        <Button title="Pix" mb="$2" mt="$2" onPress={() => {}} />, 
-        <Button title="Cartão" mb="$2" onPress={() => {}} />,
-=======
         onClose={handleCloseDrawer} 
         title="Pagamento"
         content="Finalize sua compra "
         buttons={[
         <Button title="Pix" mb="$2" mt="$2" onPress={() => {  handleCloseDrawer(); navigation.navigate("Pix")}} />, 
         <Button title="Cartão" mb="$2" onPress={() => { handleCloseDrawer(); navigation.navigate("Cartao")}} />,
->>>>>>> 15265ae (feat: created Pix component Screen)
  
       ]}
       />

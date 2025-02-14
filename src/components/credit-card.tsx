@@ -88,23 +88,18 @@ export function CreditCard({ cardSide, data }: CreditCardProps) {
     };
   });
 
-
-    useEffect(() => {
-      StatusBar.setBarStyle("dark-content");
-      StatusBar.setBackgroundColor("transparent");
-      StatusBar.setTranslucent(true);
-    }, []);
+  useEffect(() => {
+    StatusBar.setBarStyle("dark-content");
+    StatusBar.setBackgroundColor("transparent");
+    StatusBar.setTranslucent(true);
+  }, []);
 
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={{ flex: 1 }}
     >
-      {/* Container principal com position relative */}
       <Box flex={1} position="relative">
-      
-   
-
         <ScrollView
           contentContainerStyle={{ flexGrow: 1 }}
           keyboardShouldPersistTaps="handled"
@@ -115,7 +110,6 @@ export function CreditCard({ cardSide, data }: CreditCardProps) {
             height={200}
             marginBottom={isKeyboardVisible ? 80 : 0}
           >
-            {/* Frente do cartão */}
             <Animated.View
               style={[
                 { position: "absolute", width: "100%", height: "100%" },
@@ -146,25 +140,25 @@ export function CreditCard({ cardSide, data }: CreditCardProps) {
                   <Text fontSize={16} fontWeight="bold" color="gray700">
                     {data.nome || "Nome do titular"}
                   </Text>
-                  <HStack gap={-2}>
+                  <HStack alignItems="center" justifyContent="flex-start">
                     <Box
-                      width={6}
-                      height={6}
-                      borderRadius="full"
+                      width={24}
+                      height={24}
+                      borderRadius={12}
                       backgroundColor="red"
                     />
                     <Box
-                      width={6}
-                      height={6}
-                      borderRadius="full"
+                      width={24}
+                      height={24}
+                      borderRadius={12}
                       backgroundColor="orange"
+                      marginLeft={-12} // Move a laranja para sobrepor a vermelha
                     />
                   </HStack>
                 </HStack>
               </Box>
             </Animated.View>
 
-            {/* Verso do cartão */}
             <Animated.View
               style={[
                 { position: "absolute", width: "100%", height: "100%" },
