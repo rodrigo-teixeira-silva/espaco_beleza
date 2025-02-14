@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  ScrollView,
-  TouchableOpacity,
-  Alert,
-  ImageBackground,
-} from "react-native";
+import { ScrollView, TouchableOpacity, Alert, ImageBackground } from "react-native";
 import { ScreenHeader } from "@components/ScreenHeader";
 import * as ImagePicker from "expo-image-picker";
 
@@ -17,24 +12,12 @@ import { StatusBar } from "expo-status-bar";
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 
-import gold from "@assets/gold.png"; 
-
-type FormDataProps = {
-  name: string;
-  email: string;
-  password: string;
-  old_password: string;
-  confirm_password: string;
-};
+import gold from "@assets/gold.png"; // Imagem de fundo
 
 export function Profile() {
-//   async function handleUserPhotoSelect
-//   await ImagePicker.launchImageLibraryAsync()
-// );
-
-
-  const [userPhoto, setUserPhoto] = useState()
-   
+  const [userPhoto, setUserPhoto] = useState(
+    "https://github.com/rodrigo-teixeira-silva.png"
+  );
 
   const toast = useToast();
 
@@ -71,15 +54,7 @@ export function Profile() {
           });
         }
 
-        const fileExtension = photoUri.split('.').pop();
-        const photoFile = {
-          name: `${ ImagePicker}.${fileExtension}`.toLowerCase(),
-          uri: photoSelected,
-          type: `${photoSelected}/${fileExtension}`
-        }
-        console.log(photoFile);
-
-
+        setUserPhoto(photoSelected.assets[0].uri);
       }
     } catch (error) {
       console.log(error);
@@ -87,16 +62,19 @@ export function Profile() {
   }
 
   return (
-    <ImageBackground source={gold} style={{ flex: 1 }} resizeMode="cover">
-      <VStack flex={1}>
-        {" "}
-        
+    <ImageBackground
+      source={gold}
+      style={{ flex: 1 }}
+      resizeMode="cover"
+    >
+      <VStack flex={1}> {/* Garantir que o VStack ocupe toda a altura */}
         <StatusBar style="dark" backgroundColor="transparent" translucent />
+
         <ScrollView
           contentContainerStyle={{
             paddingVertical: 16,
             paddingHorizontal: 30,
-            flexGrow: 1,
+            flexGrow: 1, // Garante que o ScrollView preencha o espaço disponível
           }}
         >
           <Center mt="$6" px="$10">

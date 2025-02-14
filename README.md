@@ -34,7 +34,7 @@ Simplicidade, inovação e praticidade ao alcance de um toque!
 
 | **Tela de splash** | **Tela de início** | **Tela de bem vindo** |
 | :-------------------------------------------: | :------------------: | :------------------------------------------: |
-| <img src="src/assets/tela inicial.png" width="170px" height="350px"/> | <img src="src/assets/start.png" width="170px" height="350px"/> | <img src="src/assets/welcomeScreen.png" width="170px" height="350px"/> |
+| <img src="src/assets/tela inicial1.gif" width="170px" height="350px"/> | <img src="src/assets/start.png" width="170px" height="350px"/> | <img src="src/assets/welcomeScreen.png" width="170px" height="350px"/> |
 
 | **Tela de Login** | **Tela de Cadastro** | **Tela recuperar senha** |
 | :-------------------------------------------: | :------------------: | :------------------------------------------: |
@@ -42,17 +42,17 @@ Simplicidade, inovação e praticidade ao alcance de um toque!
 
 |**Tela de home** | **Tela de histórico** | **Tela de carteira** |
 | :---------------------------: | :-------------------: | :----------------: |  
-| <img src="src/assets/home.png " width="170px" height="350px"/> | <img src="src/assets/histórico.png" width="180px" height="350px"/> | <img src="src/assets/Produtos.png" width="170px" height="350px"/> | 
+| <img src="src/assets/home1.gif " width="170px" height="350px"/> | <img src="src/assets/histórico.png" width="180px" height="350px"/> | <img src="src/assets/Produtos1.gif" width="170px" height="350px"/> | 
 
 
 
 |**Tela de perfil** | **Tela de carrinho<br> de compras** | **Tela de produtos**
 | :--------------------------:| :-------------------------------: | :-------------------------------: |
-| <img src="src/assets/tela de perfil.png" width="170px" height="350px"/> |<img src="src/assets/carrinho de compras.png" width="170px" height="350px"/> | <img src="src/assets/carteira.png" width="180px" height="350px"/> | 
+| <img src="src/assets/tela de perfil.png" width="170px" height="350px"/> |<img src="src/assets/carrinho de compras.gif" width="170px" height="350px"/> | <img src="src/assets/carteira.gif" width="180px" height="350px"/> | 
 
 |**Botões de navegação** | **Navegação gaveta** | **Navegação<br>gaveta personalizada**
 | :--------------------------:| :-------------------------------: | :-------------------------------: |
-| <img src="src/assets/BottonNavigation.png" width="170px" height="350px"/> |<img src="src/assets/Drawer.png" width="170px" height="350px"/> | <img src="src/assets/customDrawer.png" width="180px" height="350px"/> | 
+| <img src="src/assets/BottonNavigation.gif" width="170px" height="350px"/> |<img src="src/assets/Drawer.gif" width="170px" height="350px"/> | <img src="src/assets/customDrawer.png" width="180px" height="350px"/> | 
 
 # Tecnologias utilizadas
 
