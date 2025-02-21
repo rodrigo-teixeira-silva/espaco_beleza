@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { ScrollView, TouchableOpacity, Alert, ImageBackground } from "react-native";
-import { ScreenHeader } from "@components/ScreenHeader";
+import { ScrollView, TouchableOpacity, ImageBackground } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-
-import { UserPhoto } from "@components/UserPhoto";
 import * as FileSystem from "expo-file-system";
-import { ToastMessage } from "@components/ToastMessage";
 
+import { ToastMessage } from "@components/ToastMessage";
+import { Toast } from "@gluestack-ui/themed";
 import { VStack, Text, Heading, Center, useToast } from "@gluestack-ui/themed";
 import { StatusBar } from "expo-status-bar";
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
+import { UserPhoto } from "@components/UserPhoto";
 
 import gold from "@assets/gold.png"; // Imagem de fundo
+import { api } from "@services/api";
 
 export function Profile() {
   const [userPhoto, setUserPhoto] = useState(
@@ -37,10 +37,9 @@ export function Profile() {
       const photoUri = photoSelected.assets[0].uri;
 
       if (photoUri) {
-        const photoInfo = (await FileSystem.getInfoAsync(photoUri)) as {
-          size: number;
-        };
-        if (photoInfo.size && photoInfo.size / 1024 / 1024 > 1) {
+        const photoInfo = await FileSystem.getInfoAsync(photoUri);
+        console.log("Detalhe da imagem",photoInfo)
+        if (photoInfo.size && photoInfo.size / 1024 / 1024 > 5) {
           return toast.show({
             placement: "top",
             render: ({ id }) => (
@@ -54,35 +53,74 @@ export function Profile() {
           });
         }
 
-        setUserPhoto(photoSelected.assets[0].uri);
+        const fileExtension = photoUri.split(".").pop();
+        const mimeType = `image/${fileExtension === "jpg" ? "jpeg" : fileExtension}`;
+
+        const photoFile = {
+          uri: photoUri,
+          name: `avatar.${fileExtension}`,
+          type: mimeType,
+        };
+
+        const formData = new FormData();
+        formData.append("avatar", photoFile as any);
+
+        console.log("Enviando foto para a API...", formData);
+
+        const response = await api.patch("/users/avatar", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Accept: "application/json",
+          },
+        });
+
+        console.log("Resposta da API:", response.data);
+
+        setUserPhoto(photoUri);
+
+        toast.show({
+          placement: "top",
+          render: ({ id }) => (
+            <ToastMessage
+              id={id}
+              action="success"
+              title="Foto atualizada com sucesso!"
+              onClose={() => toast.close(id)}
+            />
+          ),
+        });
       }
     } catch (error) {
-      console.log(error);
+      console.error("Erro ao atualizar a foto:", error.response?.data || error);
+
+      toast.show({
+        placement: "top",
+        render: ({ id }) => (
+          <ToastMessage
+            id={id}
+            action="error"
+            title="Erro ao atualizar a foto."
+            onClose={() => toast.close(id)}
+          />
+        ),
+      });
     }
   }
 
   return (
-    <ImageBackground
-      source={gold}
-      style={{ flex: 1 }}
-      resizeMode="cover"
-    >
-      <VStack flex={1}> {/* Garantir que o VStack ocupe toda a altura */}
+    <ImageBackground source={gold} style={{ flex: 1 }} resizeMode="cover">
+      <VStack flex={1}>
         <StatusBar style="dark" backgroundColor="transparent" translucent />
 
         <ScrollView
           contentContainerStyle={{
             paddingVertical: 16,
             paddingHorizontal: 30,
-            flexGrow: 1, // Garante que o ScrollView preencha o espaço disponível
+            flexGrow: 1,
           }}
         >
           <Center mt="$6" px="$10">
-            <UserPhoto
-              source={{ uri: userPhoto }}
-              alt="Foto de usuário"
-              size="xl"
-            />
+            <UserPhoto source={{ uri: userPhoto }} alt="Foto de usuário" size="xl" />
 
             <TouchableOpacity onPress={handleUserPhotoSelect}>
               <Text color="$gray500" fontFamily="$heading" mt="$2" mb="$8">
