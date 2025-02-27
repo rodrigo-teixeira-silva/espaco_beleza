@@ -12,6 +12,7 @@ import { Routes } from "./src/routes";
 import { Loading } from "@components/Loading";
 import { Signin } from "@screens/Signin";
 import { SignUp } from "@screens/SignUp";
+import { AuthcontextProvider } from "@contexts/authcontext";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
@@ -23,7 +24,9 @@ export default function App() {
         backgroundColor="trasparent"
         translucent
       />
-      {fontsLoaded ? <Routes /> : <Loading />}
+      <AuthcontextProvider>
+        {fontsLoaded ? <Routes /> : <Loading />}
+      </AuthcontextProvider>
     </GluestackUIProvider>
   );
 }

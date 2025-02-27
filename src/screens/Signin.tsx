@@ -8,9 +8,19 @@ import {
   HStack,
   Divider,
   Pressable,
+  useToast,
+  Toast,
+  ToastTitle
 } from "@gluestack-ui/themed";
+
+
 import { useNavigation } from "@react-navigation/native";
-import { StatusBar, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import {
+  StatusBar,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+} from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -19,11 +29,12 @@ import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 import Icon from "react-native-vector-icons/FontAwesome";
 import GoogleIcon from "@assets/google-icon.png";
-
+import { useAuth } from "@hooks/UseAuth";
 
 import Logo from "@assets/logo.svg";
 import gold from "@assets/gold.png";
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
+import { AppError } from "@utils/AppError";
 
 type FormDataProps = {
   email: string;
@@ -36,7 +47,10 @@ const signInSchema = yup.object({
 });
 
 export function Signin() {
+  const [isLoading, setIsLoading] = useState(false);
+  const { signIn } = useAuth();
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
+  const toast = useToast();
 
   const {
     control,
@@ -48,8 +62,32 @@ export function Signin() {
 
   const [isClicked, setIsClicked] = useState(false);
 
-  function handleSignIn({ email, password }: FormDataProps) {
-    console.log("Login realizado:", { email, password });
+  async function handleSignIn({ email, password }: FormDataProps) {
+    try {
+      setIsLoading(true);
+      
+      await signIn(email, password);
+    
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+      const title = isAppError
+        ? error.message
+        : "Não foi possível entrar. Tente novamente mais tarde";
+
+        setIsLoading(false);
+      toast.show({
+        placement: "top",
+        render: () => (
+          <Toast backgroundColor="$red500" action="error" variant="outline">
+            <ToastTitle color="$white">{title}</ToastTitle>
+          </Toast>
+        
+        ),
+      });
+
+    }finally {
+      setIsLoading(false); 
+    }
   }
 
   function handleNewAccount() {
@@ -88,14 +126,11 @@ export function Signin() {
               <Text color="#000000" fontSize="$2xl" fontWeight="bold">
                 LORE
               </Text>
-
-            
             </Center>
 
             <Center gap="$2" flex={1}>
               <Heading color="#000000">Acesse sua conta</Heading>
 
-             
               <Controller
                 control={control}
                 name="email"
@@ -112,7 +147,6 @@ export function Signin() {
                 )}
               />
 
-              
               <Controller
                 control={control}
                 name="password"
@@ -128,7 +162,11 @@ export function Signin() {
                 )}
               />
 
-              <Button title="Acessar" onPress={handleSubmit(handleSignIn)} />
+              <Button 
+              title="Acessar" 
+              onPress={handleSubmit(handleSignIn)} 
+              isLoading={isLoading}
+              />
 
               <HStack
                 alignItems="center"
@@ -143,8 +181,6 @@ export function Signin() {
                 <Divider flex={1} bg="#000000" />
               </HStack>
 
-
-              
               <HStack
                 space="3xl"
                 justifyContent="space-evenly"
@@ -161,7 +197,6 @@ export function Signin() {
               </HStack>
             </Center>
 
-          
             <Center justifyContent="flex-end" mt="$6">
               <Pressable onPress={handleRecoverPassword}>
                 <Text color="#000000" fontSize="$sm" fontWeight="bold">

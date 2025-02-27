@@ -8,6 +8,7 @@ import { LogOut, Menu } from "lucide-react-native";
 import { TouchableOpacity, ImageBackground } from "react-native";
 import gold from "@assets/gold.png"; // Certifique-se de que o caminho para o arquivo está correto.
 
+import { useAuth } from "@hooks/UseAuth";
 type DrawerRoutes = {
   Home: undefined;
   Profile: undefined;
@@ -15,6 +16,8 @@ type DrawerRoutes = {
 };
 
 export function HomeHeader() {
+  const { user } = useAuth();
+
   const navigation = useNavigation<DrawerNavigationProp<DrawerRoutes>>();
 
   return (
@@ -23,8 +26,9 @@ export function HomeHeader() {
       style={{ width: "100%", backgroundColor: "#b9b950" }}
       resizeMode="cover"
     >
+      {" "}
       <SafeAreaView>
-        <HStack pt="$5" pb="$5" px="$8" alignItems="center" gap="$4" w="100%">
+        <HStack pt="$0" pb="$3" px="$6" alignItems="center" gap="$3" w="100%">
           <UserPhoto
             source={{ uri: "https://github.com/rodrigo-teixeira-silva.png" }}
             w="$16"
@@ -38,7 +42,7 @@ export function HomeHeader() {
             </Text>
 
             <Heading color="#000000" fontSize="$sm">
-              Rodrigo Teixeira
+              {user.name}
             </Heading>
           </VStack>
 
